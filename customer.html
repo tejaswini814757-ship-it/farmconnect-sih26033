@@ -56,11 +56,15 @@
 
 
         <button
-            class="location-button"
-            onclick="getCustomerLocation()"
-        >
-            📍 Use My Location
-        </button>
+    class="main-btn"
+    onclick="getCustomerLocation()"
+>
+    📍 Use My Location
+</button>
+
+<p id="locationStatus">
+    Location not detected
+</p>
 
 
         <p
@@ -213,7 +217,7 @@
         <span>
             NEARBY FARMERS
         </span>
-
+\u003Csection class=\"nearby-section\">
         <h2>
             Products Available Near You
         </h2>
@@ -332,7 +336,7 @@ function getCustomerLocation() {
 }
 
 </script>
-
+<script src="js/location.js"></script>
 
 </body>
 
