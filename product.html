@@ -668,14 +668,71 @@ function updateTotal() {
 
 function addToCart() {
 
-    const message =
-        document.getElementById(
-            "message"
+    const productKey =
+        selectedProduct || "banana";
+
+
+    const product =
+        products[productKey];
+
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "farmConnectCart"
+            )
+        ) || [];
+
+
+    const existing =
+        cart.find(
+            function(item) {
+
+                return item.name ===
+                    product.name;
+
+            }
         );
 
 
-    message.innerText =
-        "✅ Product added to cart successfully!";
+    if (existing) {
+
+        existing.quantity +=
+            quantity;
+
+    } else {
+
+        cart.push({
+
+            name: product.name,
+
+            price: product.price,
+
+            emoji: product.emoji,
+
+            farmer: product.farmer,
+
+            distance: product.distance,
+
+            option: product.option,
+
+            quantity: quantity
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "farmConnectCart",
+        JSON.stringify(cart)
+    );
+
+
+    document.getElementById(
+        "message"
+    ).innerText =
+        "✅ Added to cart successfully!";
 
 }
 
