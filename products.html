@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>FarmConnect | Products</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f6f8f5;
+
+            color: #222;
+
+            animation: pageEnter 0.55s ease-out;
+        }
+
+
+        /* =========================
+           PAGE ANIMATION
+        ========================= */
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(70px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+
+            background: white;
+
+            padding: 16px 6%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            color: #198754;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+        }
+
+
+        .header-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .header-btn {
+
+            text-decoration: none;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+        }
+
+
+        .home-btn {
+
+            background: #f1f1f1;
+
+            color: #555;
+
+        }
+
+
+        .cart-btn {
+
+            background: #edf8f1;
+
+            color: #198754;
+
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            text-align: center;
+
+            padding: 45px 20px 25px;
+
+        }
+
+
+        .hero h1 {
+
+            margin: 0;
+
+            font-size: 36px;
+
+        }
+
+
+        .hero p {
+
+            color: #666;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================
+           CATEGORY FILTER
+        ========================= */
+
+        .category-bar {
+
+            width: 92%;
+
+            max-width: 1100px;
+
+            margin: 20px auto 35px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .category-btn {
+
+            border: none;
+
+            padding: 12px 22px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            color: #555;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,0.07);
+
+            transition: 0.2s;
+
+        }
+
+
+        .category-btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .category-btn.active {
+
+            background: #198754;
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           PRODUCT SECTION
+        ========================= */
+
+        .products-section {
+
+            width: 92%;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding-bottom: 70px;
+
+        }
+
+
+        .section-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .section-header h2 {
+
+            margin: 0;
+
+            font-size: 25px;
+
+        }
+
+
+        .product-count {
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           PRODUCT GRID
+        ========================= */
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.08);
+
+            transition: 0.25s;
+
+        }
+
+
+        .product-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 8px 22px
+                rgba(0,0,0,0.12);
+
+        }
+
+
+        /* =========================
+           PRODUCT IMAGE
+        ========================= */
+
+        .product-image {
+
+            height: 190px;
+
+            background: #edf5ec;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .product-emoji {
+
+            font-size: 75px;
+
+        }
+
+
+        /* =========================
+           PRODUCT INFO
+        ========================= */
+
+        .product-info {
+
+            padding: 16px;
+
+        }
+
+
+        .product-info h3 {
+
+            margin: 0 0 8px;
+
+            font-size: 19px;
+
+        }
+
+
+        .price {
+
+            color: #198754;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .info {
+
+            color: #666;
+
+            font-size: 14px;
+
+            margin: 7px 0;
+
+        }
+
+
+        .option {
+
+            display: inline-block;
+
+            margin-top: 4px;
+
+            padding: 6px 9px;
+
+            background: #f2f7f2;
+
+            border-radius: 7px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            color: #198754;
+
+        }
+
+
+        /* =========================
+           VIEW BUTTON
+        ========================= */
+
+        .view-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #198754;
+
+            color: white;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            margin-top: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .view-btn:hover {
+
+            background: #146c43;
+
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty-box {
+
+            grid-column: 1 / -1;
+
+            background: white;
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 950px) {
+
+            .product-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media(max-width: 650px) {
+
+            .logo {
+
+                font-size: 20px;
+
+            }
+
+
+            .home-btn {
+
+                display: none;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 28px;
+
+            }
+
+
+            .product-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 12px;
+
+            }
+
+
+            .product-image {
+
+                height: 155px;
+
+            }
+
+
+            .product-info {
+
+                padding: 12px;
+
+            }
+
+
+            .product-info h3 {
+
+                font-size: 16px;
+
+            }
+
+
+            .price {
+
+                font-size: 17px;
+
+            }
+
+        }
+
+
+        @media(max-width: 400px) {
+
+            .product-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .product-image {
+
+                height: 210px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="topbar">
+
+
+    <div class="logo">
+
+        🌱 FarmConnect
+
+    </div>
+
+
+    <div class="header-actions">
+
+
+        <a
+            href="customer.html"
+            class="header-btn home-btn">
+
+            ← Marketplace
+
+        </a>
+
+
+        <a
+            href="cart.html"
+            class="header-btn cart-btn">
+
+            🛒 Cart
+
+        </a>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+
+        Fresh Products 🥕🍎🌾
+
+    </h1>
+
+
+    <p>
+
+        Buy directly from farmers near you
+
+    </p>
+
+</section>
+
+
+
+<!-- =========================
+     CATEGORY BUTTONS
+========================= -->
+
+<div class="category-bar">
+
+
+    <button
+        class="category-btn active"
+        onclick="showCategory('fruits', this)">
+
+        🍎 Fruits
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="showCategory('vegetables', this)">
+
+        🥕 Vegetables
+
+    </button>
+
+
+    <button
+        class="category-btn"
+        onclick="showCategory('grains', this)">
+
+        🌾 Grains
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section class="products-section">
+
+
+    <div class="section-header">
+
+
+        <h2 id="categoryTitle">
+
+            🍎 Fresh Fruits
+
+        </h2>
+
+
+        <span
+            class="product-count"
+            id="productCount">
+
+            10 products
+
+        </span>
+
+
+    </div>
+
+
+    <div
+        id="productGrid"
+        class="product-grid">
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PRODUCT DATABASE
+========================= -->
+
+<script src="js/products.js"></script>
+
+
+
+<script>
+
+
+// ========================================
+// CURRENT CATEGORY
+// ========================================
+
+let currentCategory = "fruits";
+
+
+
+// ========================================
+// LOAD PRODUCTS
+// ========================================
+
+function loadCategoryProducts(category) {
+
+
+    const grid =
+        document.getElementById(
+            "productGrid"
+        );
+
+
+    const title =
+        document.getElementById(
+            "categoryTitle"
+        );
+
+
+    const count =
+        document.getElementById(
+            "productCount"
+        );
+
+
+    let products = [];
+
+
+    try {
+
+        products =
+            getProductsByCategory(category);
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+
+        grid.innerHTML = `
+
+            <div class="empty-box">
+
+                ❌ Unable to load products.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    grid.innerHTML = "";
+
+
+
+    const titles = {
+
+        fruits: "🍎 Fresh Fruits",
+
+        vegetables: "🥕 Fresh Vegetables",
+
+        grains: "🌾 Fresh Grains"
+
+    };
+
+
+    title.innerText =
+        titles[category];
+
+
+
+    count.innerText =
+        products.length +
+        " products";
+
+
+
+    if (!products.length) {
+
+        grid.innerHTML = `
+
+            <div class="empty-box">
+
+                😔 No products available.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    products.forEach(function(product) {
+
+
+        const id =
+            product.id ||
+            product.name
+                .toLowerCase()
+                .replace(/\s+/g, "-");
+
+
+
+        let imageHTML;
+
+
+
+        if (product.image) {
+
+            imageHTML = `
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="
+                        this.style.display='none';
+                    "
+                >
+
+            `;
+
+        }
+
+        else {
+
+            imageHTML = `
+
+                <div class="product-emoji">
+
+                    ${product.emoji || "🌾"}
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        const optionText =
+            product.option === "delivery"
+
+                ? "🚚 Delivery Available"
+
+                : "🛍️ Self Buying";
+
+
+
+        grid.innerHTML += `
+
+            <div class="product-card">
+
+
+                <div class="product-image">
+
+                    ${imageHTML}
+
+                </div>
+
+
+                <div class="product-info">
+
+
+                    <h3>
+
+                        ${product.name}
+
+                    </h3>
+
+
+                    <div class="price">
+
+                        ₹${product.price}/kg
+
+                    </div>
+
+
+                    <div class="info">
+
+                        👨‍🌾 ${product.farmer}
+
+                    </div>
+
+
+                    <div class="info">
+
+                        📍 ${product.location || "Davangere"}
+
+                    </div>
+
+
+                    <div class="info">
+
+                        📏 ${product.distance || "Nearby"}
+
+                    </div>
+
+
+                    <div class="option">
+
+                        ${optionText}
+
+                    </div>
+
+
+                    <button
+                        class="view-btn"
+                        onclick="
+                            openProduct('${id}')
+                        ">
+
+                        View Details
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+
+// ========================================
+// CHANGE CATEGORY
+// ========================================
+
+function showCategory(
+    category,
+    button
+) {
+
+
+    currentCategory =
+        category;
+
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".category-btn"
+        );
+
+
+    buttons.forEach(function(btn) {
+
+        btn.classList.remove(
+            "active"
+        );
+
+    });
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadCategoryProducts(
+        category
+    );
+
+}
+
+
+
+// ========================================
+// OPEN PRODUCT DETAILS
+// ========================================
+
+function openProduct(id) {
+
+
+    window.location.href =
+        "product.html?product=" +
+        encodeURIComponent(id);
+
+}
+
+
+
+// ========================================
+// INITIAL LOAD
+// ========================================
+
+loadCategoryProducts(
+    "fruits"
+);
+
+
+</script>
+
+
+</body>
+
+</html>
