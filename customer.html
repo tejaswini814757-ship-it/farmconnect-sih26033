@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FarmConnect | Marketplace</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f6f8f5;
+            color: #222;
+            animation: pageEnter 0.5s ease-out;
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(70px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .topbar {
+            background: white;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #198754;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .cart-btn {
+            text-decoration: none;
+            color: #198754;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: #edf8f1;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 34px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .location-card,
+        .category-card {
+            width: 92%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            text-align: center;
+        }
+
+        .location-btn {
+            border: none;
+            background: #198754;
+            color: white;
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #locationStatus {
+            margin-top: 12px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .category-card h2 {
+            margin-top: 0;
+        }
+
+        .category-select {
+            width: 100%;
+            max-width: 550px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            margin: 15px 0;
+            background: white;
+        }
+
+        .products-btn {
+            border: none;
+            background: #ff7200;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .products-area {
+            width: 92%;
+            max-width: 1200px;
+            margin: 40px auto 60px;
+        }
+
+        .products-area h2 {
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 17px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 190px;
+            background: #edf4ec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-emoji {
+            font-size: 75px;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-info h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+        }
+
+        .price {
+            color: #198754;
+            font-size: 19px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            color: #666;
+            font-size: 14px;
+            margin: 7px 0;
+        }
+
+        .view-btn {
+            width: 100%;
+            border: none;
+            background: #198754;
+            color: white;
+            padding: 12px;
+            border-radius: 9px;
+            margin-top: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .view-btn:hover {
+            background: #146c43;
+        }
+
+        .empty-box {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 45px;
+            text-align: center;
+            border-radius: 16px;
+            color: #777;
+        }
+
+        @media(max-width: 950px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 155px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-info h3 {
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 17px;
+            }
+        }
+
+        @media(max-width: 400px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        🌱 FarmConnect
+    </div>
+
+    <a href="cart.html" class="cart-btn">
+        🛒 Cart
+    </a>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>
+        Farm Fresh Marketplace 🥕
+    </h1>
+
+    <p>
+        Buy directly from nearby farmers at fair prices
+    </p>
+
+</section>
+
+
+<section class="location-card">
+
+    <button
+        class="location-btn"
+        onclick="getCustomerLocation()">
+
+        📍 Use My Location
+
+    </button>
+
+    <div id="locationStatus">
+        Location not detected
+    </div>
+
+</section>
+
+
+<section class="category-card">
+
+    <h2>
+        🛒 Shop by Category
+    </h2>
+
+    <p>
+        Choose what you want to buy
+    </p>
+
+    <select
+        id="categorySelect"
+        class="category-select">
+
+        <option value="">
+            Select Category
+        </option>
+
+        <option value="fruits">
+            🍎 Fruits
+        </option>
+
+        <option value="vegetables">
+            🥕 Vegetables
+        </option>
+
+        <option value="grains">
+            🌾 Grains
+        </option>
+
+    </select>
+
+    <button
+        class="products-btn"
+        onclick="loadProducts()">
+
+        View Products
+
+    </button>
+
+</section>
+
+
+<section class="products-area">
+
+    <h2 id="productsTitle">
+        🛍️ Products
+    </h2>
+
+    <div
+        id="productGrid"
+        class="product-grid">
+
+        <div class="empty-box">
+
+            👆 Select a category and click
+            <b>View Products</b>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="js/location.js"></script>
+
+<script src="js/products.js"></script>
+
+
+<script>
+
+function loadProducts() {
+
+    const category =
+        document.getElementById("categorySelect").value;
+
+    const grid =
+        document.getElementById("productGrid");
+
+    const title =
+        document.getElementById("productsTitle");
+
+
+    if (!category) {
+
+        alert("Please select a category.");
+
+        return;
+    }
+
+
+    let products = [];
+
+
+    try {
+
+        products =
+            getProductsByCategory(category);
+
+    } catch (error) {
+
+        console.error(error);
+
+        grid.innerHTML = `
+            <div class="empty-box">
+                ❌ Products could not be loaded.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    const titles = {
+
+        fruits: "🍎 Fresh Fruits",
+
+        vegetables: "🥕 Fresh Vegetables",
+
+        grains: "🌾 Fresh Grains"
+
+    };
+
+
+    title.innerText =
+        titles[category];
+
+
+    if (!products.length) {
+
+        grid.innerHTML = `
+            <div class="empty-box">
+                😔 No products available.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    products.forEach(function(product) {
+
+
+        const id =
+            product.id ||
+            product.name
+                .toLowerCase()
+                .replace(/\s+/g, "-");
+
+
+        let distance =
+            product.distance ||
+            "Distance unavailable";
+
+
+        if (
+            typeof getProductDistance ===
+            "function"
+        ) {
+
+            try {
+
+                distance =
+                    getProductDistance(product);
+
+            } catch (error) {
+
+                distance =
+                    product.distance ||
+                    "Distance unavailable";
+
+            }
+        }
+
+
+        let image;
+
+
+        if (product.image) {
+
+            image = `
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="this.style.display='none';"
+                >
+            `;
+
+        } else {
+
+            image = `
+                <div class="product-emoji">
+                    ${product.emoji || "🌾"}
+                </div>
+            `;
+        }
+
+
+        const buyingOption =
+            product.option === "delivery"
+                ? "🚚 Delivery Available"
+                : "🛍️ Self Buying";
+
+
+        grid.innerHTML += `
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    ${image}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <div class="price">
+                        ₹${product.price}/kg
+                    </div>
+
+                    <div class="info">
+                        👨‍🌾 ${product.farmer}
+                    </div>
+
+                    <div class="info">
+                        📍 ${distance}
+                    </div>
+
+                    <div class="info">
+                        ${buyingOption}
+                    </div>
+
+                    <button
+                        class="view-btn"
+                        onclick="openProduct('${id}')">
+
+                        View Details
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+function openProduct(id) {
+
+    window.location.href =
+        "product.html?product=" +
+        encodeURIComponent(id);
+
+}
+
+</script>
+
+</body>
+</html>
