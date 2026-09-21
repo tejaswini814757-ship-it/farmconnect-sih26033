@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Customer | FarmConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        🌱 FarmConnect
+    </div>
+
+</header>
+
+
+
+<!-- CUSTOMER HERO -->
+
+<section class="customer-hero">
+
+    <div>
+
+        <span class="tag">
+            CUSTOMER MARKETPLACE
+        </span>
+
+        <h1>
+            Fresh Products Near You
+        </h1>
+
+        <p>
+            Discover fruits, vegetables and grains
+            available from nearby farmers.
+        </p>
+
+
+        <button
+            class="location-button"
+            onclick="getCustomerLocation()"
+        >
+            📍 Use My Location
+        </button>
+
+
+        <p
+            id="customerLocation"
+            class="location-text"
+        >
+            Location not selected
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+
+    <div class="section-heading">
+
+        <span>
+            SHOP BY CATEGORY
+        </span>
+
+        <h2>
+            What do you need?
+        </h2>
+
+        <p>
+            Select a category to find products
+            from nearby farmers.
+        </p>
+
+    </div>
+
+
+
+    <div class="category-grid">
+
+
+        <!-- FRUITS -->
+
+        <a
+            href="fruits.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                🍎
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Fruits
+                </h3>
+
+                <p>
+                    Fresh seasonal fruits
+                    from local farmers.
+                </p>
+
+                <span>
+                    View Fruits →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- VEGETABLES -->
+
+        <a
+            href="vegetables.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                🥦
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Vegetables
+                </h3>
+
+                <p>
+                    Fresh vegetables
+                    directly from farms.
+                </p>
+
+                <span>
+                    View Vegetables →
+                </span>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- GRAINS -->
+
+        <a
+            href="grains.html"
+            class="category-card"
+        >
+
+            <div class="category-icon">
+                🌾
+            </div>
+
+            <div class="category-info">
+
+                <h3>
+                    Grains
+                </h3>
+
+                <p>
+                    Rice, millets and grains
+                    from farmers.
+                </p>
+
+                <span>
+                    View Grains →
+                </span>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- NEARBY SECTION -->
+
+<section class="nearby-section">
+
+    <div class="section-heading">
+
+        <span>
+            NEARBY FARMERS
+        </span>
+
+        <h2>
+            Products Available Near You
+        </h2>
+
+        <p>
+            Location-based product discovery
+            will be available here.
+        </p>
+
+    </div>
+
+
+    <div class="nearby-box">
+
+        <div class="nearby-icon">
+            📍
+        </div>
+
+        <h3>
+            Find Products Near You
+        </h3>
+
+        <p>
+            Allow location access to discover
+            products listed by nearby farmers.
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="getCustomerLocation()"
+        >
+            Find Nearby Products
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h3>
+        🌱 FarmConnect
+    </h3>
+
+    <p>
+        Customer Marketplace • SIH26033
+    </p>
+
+</footer>
+
+
+
+<script>
+
+function getCustomerLocation() {
+
+    const status =
+        document.getElementById("customerLocation");
+
+    if (!navigator.geolocation) {
+
+        status.innerText =
+            "Location is not supported by this browser.";
+
+        return;
+
+    }
+
+
+    status.innerText =
+        "📍 Getting your location...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            localStorage.setItem(
+                "customerLatitude",
+                latitude
+            );
+
+
+            localStorage.setItem(
+                "customerLongitude",
+                longitude
+            );
+
+
+            status.innerText =
+                "🟢 Location selected successfully!";
+
+        },
+
+
+        function() {
+
+            status.innerText =
+                "❌ Location permission was not allowed.";
+
+        }
+
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>
