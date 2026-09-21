@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fruits | FarmConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        🌱 FarmConnect
+    </div>
+
+    <nav>
+
+        <a href="customer.html">
+            Home
+        </a>
+
+        <a href="fruits.html">
+            Fruits
+        </a>
+
+        <a href="vegetables.html">
+            Vegetables
+        </a>
+
+        <a href="grains.html">
+            Grains
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- PAGE TITLE -->
+
+<section class="products-header">
+
+    <span class="tag">
+        FRESH FROM FARMERS
+    </span>
+
+    <h1>
+        🍎 Fresh Fruits
+    </h1>
+
+    <p>
+        Find fruits available from farmers
+        near your location.
+    </p>
+
+</section>
+
+
+
+<!-- SEARCH -->
+
+<div class="search-container">
+
+    <input
+        type="text"
+        id="fruitSearch"
+        placeholder="Search fruits..."
+        onkeyup="searchFruits()"
+    >
+
+</div>
+
+
+
+<!-- PRODUCTS -->
+
+<section class="products-section">
+
+
+    <div
+        class="products-grid"
+        id="fruitProducts"
+    >
+
+
+        <!-- 1 BANANA -->
+
+        <div
+            class="product-card"
+            data-name="banana"
+        >
+
+            <div class="product-image">
+                🍌
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Banana
+                </h3>
+
+                <h4>
+                    ₹45 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Ramesh Farm
+                </p>
+
+                <p>
+                    📍 1.2 km away
+                </p>
+
+                <span class="self-buy">
+                    🟢 Self Buying
+                </span>
+
+                <a
+                    href="product.html?product=banana"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 2 APPLE -->
+
+        <div
+            class="product-card"
+            data-name="apple"
+        >
+
+            <div class="product-image">
+                🍎
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Apple
+                </h3>
+
+                <h4>
+                    ₹140 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Shivu Farm
+                </p>
+
+                <p>
+                    📍 2.4 km away
+                </p>
+
+                <span class="delivery">
+                    🔵 Delivery Available
+                </span>
+
+                <a
+                    href="product.html?product=apple"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 3 ORANGE -->
+
+        <div
+            class="product-card"
+            data-name="orange"
+        >
+
+            <div class="product-image">
+                🍊
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Orange
+                </h3>
+
+                <h4>
+                    ₹80 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Kumar Farm
+                </p>
+
+                <p>
+                    📍 3.1 km away
+                </p>
+
+                <span class="self-buy">
+                    🟢 Self Buying
+                </span>
+
+                <a
+                    href="product.html?product=orange"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 4 MANGO -->
+
+        <div
+            class="product-card"
+            data-name="mango"
+        >
+
+            <div class="product-image">
+                🥭
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Mango
+                </h3>
+
+                <h4>
+                    ₹100 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Manjunath Farm
+                </p>
+
+                <p>
+                    📍 1.8 km away
+                </p>
+
+                <span class="delivery">
+                    🔵 Delivery Available
+                </span>
+
+                <a
+                    href="product.html?product=mango"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 5 GRAPES -->
+
+        <div
+            class="product-card"
+            data-name="grapes"
+        >
+
+            <div class="product-image">
+                🍇
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Grapes
+                </h3>
+
+                <h4>
+                    ₹90 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Basavaraj Farm
+                </p>
+
+                <p>
+                    📍 2.0 km away
+                </p>
+
+                <span class="self-buy">
+                    🟢 Self Buying
+                </span>
+
+                <a
+                    href="product.html?product=grapes"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 6 GUAVA -->
+
+        <div
+            class="product-card"
+            data-name="guava"
+        >
+
+            <div class="product-image">
+                🍐
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Guava
+                </h3>
+
+                <h4>
+                    ₹60 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Ravi Farm
+                </p>
+
+                <p>
+                    📍 1.5 km away
+                </p>
+
+                <span class="delivery">
+                    🔵 Delivery Available
+                </span>
+
+                <a
+                    href="product.html?product=guava"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 7 WATERMELON -->
+
+        <div
+            class="product-card"
+            data-name="watermelon"
+        >
+
+            <div class="product-image">
+                🍉
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Watermelon
+                </h3>
+
+                <h4>
+                    ₹35 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Anand Farm
+                </p>
+
+                <p>
+                    📍 2.7 km away
+                </p>
+
+                <span class="self-buy">
+                    🟢 Self Buying
+                </span>
+
+                <a
+                    href="product.html?product=watermelon"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 8 PINEAPPLE -->
+
+        <div
+            class="product-card"
+            data-name="pineapple"
+        >
+
+            <div class="product-image">
+                🍍
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Pineapple
+                </h3>
+
+                <h4>
+                    ₹70 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Mahesh Farm
+                </p>
+
+                <p>
+                    📍 3.5 km away
+                </p>
+
+                <span class="delivery">
+                    🔵 Delivery Available
+                </span>
+
+                <a
+                    href="product.html?product=pineapple"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 9 POMEGRANATE -->
+
+        <div
+            class="product-card"
+            data-name="pomegranate"
+        >
+
+            <div class="product-image">
+                ❤️
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Pomegranate
+                </h3>
+
+                <h4>
+                    ₹160 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Suresh Farm
+                </p>
+
+                <p>
+                    📍 2.2 km away
+                </p>
+
+                <span class="self-buy">
+                    🟢 Self Buying
+                </span>
+
+                <a
+                    href="product.html?product=pomegranate"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 10 PAPAYA -->
+
+        <div
+            class="product-card"
+            data-name="papaya"
+        >
+
+            <div class="product-image">
+                🍈
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Papaya
+                </h3>
+
+                <h4>
+                    ₹50 / kg
+                </h4>
+
+                <p>
+                    🧑‍🌾 Prakash Farm
+                </p>
+
+                <p>
+                    📍 1.9 km away
+                </p>
+
+                <span class="delivery">
+                    🔵 Delivery Available
+                </span>
+
+                <a
+                    href="product.html?product=papaya"
+                    class="product-btn"
+                >
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <h3>
+        🌱 FarmConnect
+    </h3>
+
+    <p>
+        Direct Farmer Marketplace • SIH26033
+    </p>
+
+</footer>
+
+
+
+<script>
+
+function searchFruits() {
+
+    const search =
+        document
+        .getElementById("fruitSearch")
+        .value
+        .toLowerCase();
+
+    const products =
+        document
+        .querySelectorAll(".product-card");
+
+
+    products.forEach(function(product) {
+
+        const name =
+            product
+            .getAttribute("data-name");
+
+
+        if (
+            name.includes(search)
+        ) {
+
+            product.style.display =
+                "block";
+
+        } else {
+
+            product.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+</body>
+
+</html>
