@@ -1,0 +1,633 @@
+<script>
+
+// ==========================================
+// IMAGE ELEMENTS
+// ==========================================
+
+const imageInput =
+    document.getElementById("productImageInput");
+
+const previewBox =
+    document.getElementById("previewBox");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+
+// ==========================================
+// CAMERA / PHOTO SELECT
+// ==========================================
+
+imageInput.addEventListener(
+    "change",
+    function () {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select an image.");
+
+            return;
+        }
+
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            imagePreview.src =
+                event.target.result;
+
+            previewBox.style.display =
+                "block";
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+// ==========================================
+// RETAKE PHOTO
+// ==========================================
+
+function retakePhoto() {
+
+    imageInput.value = "";
+
+    imagePreview.src = "";
+
+    previewBox.style.display =
+        "none";
+
+    setTimeout(function () {
+
+        imageInput.click();
+
+    }, 100);
+
+}
+
+
+// ==========================================
+// COMPRESS IMAGE
+// ==========================================
+
+function compressImage(
+    imageData,
+    maxWidth = 800,
+    quality = 0.65
+) {
+
+    return new Promise(function (resolve) {
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            let width = img.width;
+
+            let height = img.height;
+
+
+            // Resize large camera photo
+
+            if (width > maxWidth) {
+
+                height =
+                    height *
+                    (maxWidth / width);
+
+                width =
+                    maxWidth;
+
+            }
+
+
+            const canvas =
+                document.createElement(
+                    "canvas"
+                );
+
+
+            canvas.width = width;
+
+            canvas.height = height;
+
+
+            const ctx =
+                canvas.getContext(
+                    "2d"
+                );
+
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
+
+
+            // JPEG compressed image
+
+            const compressed =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    quality
+                );
+
+
+            resolve(compressed);
+
+        };
+
+
+        img.src = imageData;
+
+    });
+
+}
+
+
+// ==========================================
+// SAVE PRODUCT
+// ==========================================
+
+async function saveProduct() {
+
+    const button =
+        document.querySelector(
+            ".save-btn"
+        );
+
+
+    // Disable button while saving
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.innerText =
+            "⏳ Saving Product...";
+
+    }
+
+
+    try {
+
+        // ==================================
+        // IMAGE
+        // ==================================
+
+        let image =
+            imagePreview.src;
+
+
+        if (
+            !image ||
+            image === window.location.href
+        ) {
+
+            alert(
+                "Please take a product photo."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        // ==================================
+        // COMPRESS PHOTO
+        // ==================================
+
+        image =
+            await compressImage(
+                image,
+                800,
+                0.65
+            );
+
+
+        // ==================================
+        // PRODUCT DETAILS
+        // ==================================
+
+        const name =
+            document
+                .getElementById(
+                    "productName"
+                )
+                .value
+                .trim();
+
+
+        const category =
+            document
+                .getElementById(
+                    "productCategory"
+                )
+                .value;
+
+
+        const price =
+            document
+                .getElementById(
+                    "productPrice"
+                )
+                .value;
+
+
+        const quantity =
+            document
+                .getElementById(
+                    "productQuantity"
+                )
+                .value;
+
+
+        const farmer =
+            document
+                .getElementById(
+                    "farmerName"
+                )
+                .value
+                .trim();
+
+
+        const location =
+            document
+                .getElementById(
+                    "productLocation"
+                )
+                .value
+                .trim();
+
+
+        const description =
+            document
+                .getElementById(
+                    "productDescription"
+                )
+                .value
+                .trim();
+
+
+        const optionElement =
+            document.querySelector(
+                'input[name="buyingOption"]:checked'
+            );
+
+
+        const option =
+            optionElement
+                ? optionElement.value
+                : "self";
+
+
+        // ==================================
+        // VALIDATION
+        // ==================================
+
+        if (!name) {
+
+            alert(
+                "Please enter product name."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        if (!category) {
+
+            alert(
+                "Please select category."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        if (
+            !price ||
+            Number(price) <= 0
+        ) {
+
+            alert(
+                "Please enter a valid price."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        if (
+            !quantity ||
+            Number(quantity) <= 0
+        ) {
+
+            alert(
+                "Please enter available quantity."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        if (!farmer) {
+
+            alert(
+                "Please enter farmer name."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        if (!location) {
+
+            alert(
+                "Please enter product location."
+            );
+
+            resetSaveButton();
+
+            return;
+
+        }
+
+
+        // ==================================
+        // CREATE PRODUCT
+        // ==================================
+
+        const product = {
+
+            id:
+                "farmer-" +
+                Date.now(),
+
+            name:
+                name,
+
+            category:
+                category,
+
+            price:
+                Number(price),
+
+            quantity:
+                Number(quantity),
+
+            farmer:
+                farmer,
+
+            location:
+                location,
+
+            distance:
+                "Nearby",
+
+            option:
+                option,
+
+            image:
+                image,
+
+            description:
+                description,
+
+            createdAt:
+                new Date().toISOString(),
+
+            farmerProduct:
+                true
+
+        };
+
+
+        // ==================================
+        // GET OLD PRODUCTS
+        // ==================================
+
+        let products = [];
+
+
+        try {
+
+            products =
+                JSON.parse(
+                    localStorage.getItem(
+                        "farmConnectProducts"
+                    )
+                ) || [];
+
+        }
+
+        catch (error) {
+
+            products = [];
+
+        }
+
+
+        if (!Array.isArray(products)) {
+
+            products = [];
+
+        }
+
+
+        // ==================================
+        // ADD NEW PRODUCT
+        // ==================================
+
+        products.push(product);
+
+
+        // ==================================
+        // SAVE COMPRESSED PRODUCT
+        // ==================================
+
+        try {
+
+            localStorage.setItem(
+
+                "farmConnectProducts",
+
+                JSON.stringify(products)
+
+            );
+
+        }
+
+        catch (storageError) {
+
+            console.error(
+                storageError
+            );
+
+
+            // Try removing only image
+            // from old products
+
+            const smallerProducts =
+                products.map(
+                    function (item) {
+
+                        return {
+
+                            ...item,
+
+                            image:
+                                item.id ===
+                                product.id
+                                    ? image
+                                    : (
+                                        item.image
+                                            ? item.image
+                                            : ""
+                                    )
+
+                        };
+
+                    }
+                );
+
+
+            try {
+
+                localStorage.setItem(
+
+                    "farmConnectProducts",
+
+                    JSON.stringify(
+                        smallerProducts
+                    )
+
+                );
+
+            }
+
+            catch (finalError) {
+
+                alert(
+
+                    "Browser storage is full. " +
+                    "Please delete an old product " +
+                    "and try again."
+
+                );
+
+                resetSaveButton();
+
+                return;
+
+            }
+
+        }
+
+
+        // ==================================
+        // SUCCESS
+        // ==================================
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        if (message) {
+
+            message.style.color =
+                "#198754";
+
+            message.innerText =
+                "✅ Product added successfully!";
+
+        }
+
+
+        // ==================================
+        // OPEN FARMER PRODUCTS
+        // ==================================
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "farmer-products.html";
+
+            },
+            800
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to save product. " +
+            "Please try again."
+        );
+
+        resetSaveButton();
+
+    }
+
+}
+
+
+// ==========================================
+// RESET SAVE BUTTON
+// ==========================================
+
+function resetSaveButton() {
+
+    const button =
+        document.querySelector(
+            ".save-btn"
+        );
+
+    if (button) {
+
+        button.disabled = false;
+
+        button.innerText =
+            "✅ Add Product";
+
+    }
+
+}
+
+</script>
