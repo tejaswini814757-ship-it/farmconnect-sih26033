@@ -1,718 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Product Details | FarmConnect</title>
 
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-
 <body>
-
-
-<!-- HEADER -->
 
 <header class="header">
 
     <div class="logo">
-        🌱 FarmConnect
+        🌾 FarmConnect
     </div>
 
-    <nav>
-
-        <a href="customer.html">
-            Home
-        </a>
-
-        <a href="fruits.html">
-            Fruits
-        </a>
-
-        <a href="vegetables.html">
-            Vegetables
-        </a>
-
-        <a href="grains.html">
-            Grains
-        </a>
-
-    </nav>
+    <a href="customer.html" class="secondary-btn">
+        ← Marketplace
+    </a>
 
 </header>
 
 
+<section class="product-detail-section">
 
-<!-- PRODUCT DETAILS -->
+    <div id="productDetails"></div>
 
-<section class="product-details-section">
-
-
-    <div class="product-details">
+</section>
 
 
-        <!-- PRODUCT IMAGE -->
+<script src="js/products.js"></script>
 
-        <div class="large-product-image">
 
-            <div id="productEmoji">
-                🍌
-            </div>
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const productId = params.get("product");
+
+const productDetails =
+    document.getElementById("productDetails");
+
+
+/* Find product */
+
+function findProduct() {
+
+    /* Farmer-added product */
+
+    if (productId && productId.startsWith("farmer_")) {
+
+        const farmerId =
+            productId.replace("farmer_", "");
+
+        const farmerProducts =
+            JSON.parse(
+                localStorage.getItem("farmConnectProducts")
+            ) || [];
+
+        return farmerProducts.find(
+            product => product.id === farmerId
+        );
+    }
+
+
+    /* Demo product */
+
+    const categories = [
+        "fruits",
+        "vegetables",
+        "grains"
+    ];
+
+
+    for (const category of categories) {
+
+        const products =
+            demoProducts[category] || [];
+
+        const product =
+            products.find(
+                item => item.id === productId
+            );
+
+        if (product) {
+
+            return product;
+
+        }
+
+    }
+
+
+    return null;
+}
+
+
+const product = findProduct();
+
+
+/* Product not found */
+
+if (!product) {
+
+    productDetails.innerHTML = `
+
+        <div class="empty-state">
+
+            <h2>Product not found ❌</h2>
+
+            <p>
+                This product is no longer available.
+            </p>
+
+            <br>
+
+            <a href="customer.html" class="main-btn">
+                Back to Marketplace
+            </a>
 
         </div>
 
+    `;
+
+}
 
 
-        <!-- PRODUCT INFORMATION -->
+/* Display product */
 
-        <div class="product-details-info">
+else {
 
-
-            <span class="tag">
-                DIRECT FROM FARMER
-            </span>
-
-
-            <h1 id="productName">
-                Banana
-            </h1>
+    const optionText =
+        product.option === "self"
+        ? "🛍 Self Buying / Pickup"
+        : "🚚 Delivery Available";
 
 
-            <h2 id="productPrice">
-                ₹45 / kg
-            </h2>
+    const location =
+        product.location ||
+        product.distance ||
+        "Location not available";
 
 
-            <p class="available">
-                🟢 Available: 50 kg
-            </p>
+    const availableQuantity =
+        product.quantity || "Available";
 
 
-            <hr>
+    productDetails.innerHTML = `
+
+        <div class="product-detail-card">
 
 
-            <!-- FARMER -->
+            <div class="product-detail-image">
 
-            <h3>
-                🧑‍🌾 Farmer Details
-            </h3>
-
-
-            <div class="farmer-detail-box">
-
-                <p>
-                    <strong>
-                        Farmer:
-                    </strong>
-
-                    <span id="farmerName">
-                        Ramesh Farm
-                    </span>
-                </p>
-
-
-                <p>
-                    <strong>
-                        📍 Distance:
-                    </strong>
-
-                    <span id="distance">
-                        1.2 km away
-                    </span>
-                </p>
-
-
-                <p>
-                    <strong>
-                        📍 Farm Location:
-                    </strong>
-
-                    Davangere
-                </p>
+                <span style="font-size:130px;">
+                    ${product.emoji}
+                </span>
 
             </div>
 
 
-            <!-- BUYING OPTION -->
+            <div class="product-detail-info">
 
-            <h3 class="option-title">
-                Buying Option
-            </h3>
-
-
-            <div
-                id="buyingOption"
-                class="buying-option self-option"
-            >
-
-                🟢 Self Buying
-
-                <small>
-                    Customer can visit the farmer
-                    location and collect the product.
-                </small>
-
-            </div>
+                <span class="product-category">
+                    ${product.category || "Fresh Product"}
+                </span>
 
 
-            <!-- QUANTITY -->
-
-            <div class="quantity-area">
-
-                <label>
-                    Quantity
-                </label>
+                <h1>
+                    ${product.name}
+                </h1>
 
 
-                <div class="quantity-control">
+                <h2 class="product-price">
+                    ₹${product.price}/kg
+                </h2>
+
+
+                <div class="farmer-info">
+
+                    <h3>👨‍🌾 Farmer Details</h3>
+
+                    <p>
+                        <strong>Farmer:</strong>
+                        ${product.farmer}
+                    </p>
+
+                    <p>
+                        <strong>📍 Location:</strong>
+                        ${location}
+                    </p>
+
+                </div>
+
+
+                <div class="buying-option">
+
+                    <strong>
+                        Customer Buying Option
+                    </strong>
+
+                    <p>
+                        ${optionText}
+                    </p>
+
+                </div>
+
+
+                <div class="quantity-info">
+
+                    <strong>
+                        Available Quantity:
+                    </strong>
+
+                    <p>
+                        ${availableQuantity}
+                        ${product.quantity ? "kg" : ""}
+                    </p>
+
+                </div>
+
+
+                <div class="quantity-box">
+
+                    <label>
+                        Select Quantity (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        value="1"
+                        min="1"
+                        max="${
+                            product.quantity || 9999
+                        }"
+                    >
+
+                </div>
+
+
+                <div class="product-actions">
 
                     <button
-                        onclick="decreaseQuantity()"
+                        class="main-btn"
+                        onclick="addToCart()"
                     >
-                        −
+                        🛒 Add to Cart
                     </button>
 
 
-                    <span id="quantity">
-                        1
-                    </span>
-
-
-                    <button
-                        onclick="increaseQuantity()"
+                    <a
+                        href="customer.html"
+                        class="secondary-btn"
                     >
-                        +
-                    </button>
+                        Continue Shopping
+                    </a>
+
+                </div>
+
+
+                <div class="direct-selling-note">
+
+                    <h3>🌱 Direct Farmer Selling</h3>
+
+                    <p>
+                        Buy directly from the farmer
+                        without unnecessary intermediaries.
+                    </p>
 
                 </div>
 
             </div>
 
-
-            <!-- TOTAL -->
-
-            <div class="total-box">
-
-                <span>
-                    Total
-                </span>
-
-                <strong id="totalPrice">
-                    ₹45
-                </strong>
-
-            </div>
-
-
-            <!-- BUTTONS -->
-
-            <div class="product-actions">
-
-                <button
-                    class="cart-btn"
-                    onclick="addToCart()"
-                >
-                    🛒 Add to Cart
-                </button>
-
-
-                <button
-                    class="buy-btn"
-                    onclick="buyNow()"
-                >
-                    Buy Now
-                </button>
-
-            </div>
-
-
-            <p
-                id="message"
-                class="success-message"
-            ></p>
-
-
         </div>
 
-    </div>
-
-</section>
-
-
-
-<!-- FARMER INFORMATION -->
-
-<section class="farmer-info-section">
-
-
-    <div class="section-heading">
-
-        <span>
-            FARMER INFORMATION
-        </span>
-
-        <h2>
-            About This Farmer
-        </h2>
-
-    </div>
-
-
-    <div class="farmer-info-card">
-
-
-        <div class="farmer-avatar">
-            🧑‍🌾
-        </div>
-
-
-        <div>
-
-            <h3>
-                Ramesh Farm
-            </h3>
-
-            <p>
-                Local farmer supplying fresh
-                agricultural products directly
-                to nearby customers.
-            </p>
-
-
-            <div class="farmer-points">
-
-                <span>
-                    ✓ Product listed directly
-                </span>
-
-                <span>
-                    ✓ Location verified by farmer
-                </span>
-
-                <span>
-                    ✓ Farmer chooses buying option
-                </span>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <h3>
-        🌱 FarmConnect
-    </h3>
-
-    <p>
-        Direct Farmer Marketplace • SIH26033
-    </p>
-
-</footer>
-
-
-
-<script>
-
-
-/* DEFAULT PRODUCT */
-
-let price = 45;
-
-let quantity = 1;
-
-
-
-/* READ PRODUCT FROM URL */
-
-const urlParams =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const selectedProduct =
-    urlParams.get("product");
-
-
-
-/* PRODUCT DATA */
-
-const products = {
-
-    banana: {
-
-        name: "Banana",
-
-        price: 45,
-
-        emoji: "🍌",
-
-        farmer: "Ramesh Farm",
-
-        distance: "1.2 km away",
-
-        option: "self"
-
-    },
-
-
-    apple: {
-
-        name: "Apple",
-
-        price: 140,
-
-        emoji: "🍎",
-
-        farmer: "Shivu Farm",
-
-        distance: "2.4 km away",
-
-        option: "delivery"
-
-    },
-
-
-    orange: {
-
-        name: "Orange",
-
-        price: 80,
-
-        emoji: "🍊",
-
-        farmer: "Kumar Farm",
-
-        distance: "3.1 km away",
-
-        option: "self"
-
-    },
-
-
-    mango: {
-
-        name: "Mango",
-
-        price: 100,
-
-        emoji: "🥭",
-
-        farmer: "Manjunath Farm",
-
-        distance: "1.8 km away",
-
-        option: "delivery"
-
-    },
-
-
-    grapes: {
-
-        name: "Grapes",
-
-        price: 90,
-
-        emoji: "🍇",
-
-        farmer: "Basavaraj Farm",
-
-        distance: "2.0 km away",
-
-        option: "self"
-
-    },
-
-
-    guava: {
-
-        name: "Guava",
-
-        price: 60,
-
-        emoji: "🍐",
-
-        farmer: "Ravi Farm",
-
-        distance: "1.5 km away",
-
-        option: "delivery"
-
-    },
-
-
-    watermelon: {
-
-        name: "Watermelon",
-
-        price: 35,
-
-        emoji: "🍉",
-
-        farmer: "Anand Farm",
-
-        distance: "2.7 km away",
-
-        option: "self"
-
-    },
-
-
-    pineapple: {
-
-        name: "Pineapple",
-
-        price: 70,
-
-        emoji: "🍍",
-
-        farmer: "Mahesh Farm",
-
-        distance: "3.5 km away",
-
-        option: "delivery"
-
-    },
-
-
-    pomegranate: {
-
-        name: "Pomegranate",
-
-        price: 160,
-
-        emoji: "❤️",
-
-        farmer: "Suresh Farm",
-
-        distance: "2.2 km away",
-
-        option: "self"
-
-    },
-
-
-    papaya: {
-
-        name: "Papaya",
-
-        price: 50,
-
-        emoji: "🍈",
-
-        farmer: "Prakash Farm",
-
-        distance: "1.9 km away",
-
-        option: "delivery"
-
-    }
-
-};
-
-
-
-/* LOAD PRODUCT */
-
-if (
-    selectedProduct &&
-    products[selectedProduct]
-) {
-
-    const product =
-        products[selectedProduct];
-
-
-    price =
-        product.price;
-
-
-    document.getElementById(
-        "productName"
-    ).innerText =
-        product.name;
-
-
-    document.getElementById(
-        "productPrice"
-    ).innerText =
-        "₹" + product.price + " / kg";
-
-
-    document.getElementById(
-        "productEmoji"
-    ).innerText =
-        product.emoji;
-
-
-    document.getElementById(
-        "farmerName"
-    ).innerText =
-        product.farmer;
-
-
-    document.getElementById(
-        "distance"
-    ).innerText =
-        product.distance;
-
-
-    const option =
-        document.getElementById(
-            "buyingOption"
-        );
-
-
-    if (product.option === "delivery") {
-
-        option.className =
-            "buying-option delivery-option";
-
-        option.innerHTML = `
-            🔵 Delivery Available
-
-            <small>
-                Farmer has selected
-                delivery as an available option.
-            </small>
-        `;
-
-    }
-
-
-    updateTotal();
+    `;
 
 }
 
 
-
-/* QUANTITY + */
-
-function increaseQuantity() {
-
-    quantity++;
-
-    document.getElementById(
-        "quantity"
-    ).innerText =
-        quantity;
-
-    updateTotal();
-
-}
-
-
-
-/* QUANTITY - */
-
-function decreaseQuantity() {
-
-    if (quantity > 1) {
-
-        quantity--;
-
-    }
-
-
-    document.getElementById(
-        "quantity"
-    ).innerText =
-        quantity;
-
-
-    updateTotal();
-
-}
-
-
-
-/* TOTAL */
-
-function updateTotal() {
-
-    const total =
-        price * quantity;
-
-
-    document.getElementById(
-        "totalPrice"
-    ).innerText =
-        "₹" + total;
-
-}
-
-
-
-/* ADD TO CART */
+/* Add to Cart */
 
 function addToCart() {
 
-    const productKey =
-        selectedProduct || "banana";
+    if (!product) return;
 
 
-    const product =
-        products[productKey];
+    const quantity =
+        parseInt(
+            document.getElementById("quantity").value
+        );
+
+
+    if (!quantity || quantity < 1) {
+
+        alert("Please enter a valid quantity.");
+
+        return;
+    }
+
+
+    if (
+        product.quantity &&
+        quantity > Number(product.quantity)
+    ) {
+
+        alert(
+            "Only " +
+            product.quantity +
+            " kg is available."
+        );
+
+        return;
+    }
 
 
     let cart =
         JSON.parse(
-            localStorage.getItem(
-                "farmConnectCart"
-            )
+            localStorage.getItem("farmConnectCart")
         ) || [];
 
 
-    const existing =
-        cart.find(
-            function(item) {
-
-                return item.name ===
-                    product.name;
-
-            }
+    const existingIndex =
+        cart.findIndex(
+            item => item.productId === product.id
         );
 
 
-    if (existing) {
+    if (existingIndex !== -1) {
 
-        existing.quantity +=
-            quantity;
+        cart[existingIndex].quantity += quantity;
 
-    } else {
+    }
+
+    else {
 
         cart.push({
 
+            productId: product.id,
+
             name: product.name,
 
-            price: product.price,
+            price: Number(product.price),
 
             emoji: product.emoji,
 
             farmer: product.farmer,
 
-            distance: product.distance,
+            distance:
+                product.distance ||
+                product.location,
+
+            location:
+                product.location || "",
 
             option: product.option,
 
@@ -729,28 +372,20 @@ function addToCart() {
     );
 
 
-    document.getElementById(
-        "message"
-    ).innerText =
-        "✅ Added to cart successfully!";
+    alert(
+        product.name +
+        " added to cart successfully! 🛒"
+    );
+
+
+    window.location.href = "cart.html";
 
 }
-
-
-
-/* BUY NOW */
-
-function buyNow() {
-
-    window.location.href =
-        "cart.html";
-
-}
-
 
 </script>
 
-
 </body>
+</html>
 
-  </html>
+                        
+                                
