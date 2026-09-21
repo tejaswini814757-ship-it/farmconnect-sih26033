@@ -373,11 +373,11 @@ function getFarmerProducts() {
             return [];
         }
 
-        return products.map(function(product) {
+        return products.map(function(products) {
 
             return {
-                ...product,
-                farmerProduct: true
+                ...products,
+                farmerProducts: true
             };
 
         });
@@ -401,17 +401,17 @@ function getFarmerProducts() {
 function getProductsByCategory(category) {
 
     const demo =
-        demoProducts.filter(function(product) {
+        demoProducts.filter(function(products) {
 
-            return product.category === category;
+            return products.category === category;
 
         });
 
 
     const farmerProducts =
-        getFarmerProducts().filter(function(product) {
+        getFarmerProducts().filter(function(products) {
 
-            return product.category === category;
+            return products.category === category;
 
         });
 
@@ -441,9 +441,9 @@ function getProductById(id) {
     const allProducts =
         getAllProducts();
 
-    return allProducts.find(function(product) {
+    return allProducts.find(function(products) {
 
-        return String(product.id) === String(id);
+        return String(products.id) === String(id);
 
     });
 
