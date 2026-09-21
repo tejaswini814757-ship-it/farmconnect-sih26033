@@ -91,40 +91,36 @@ function saveProduct() {
 
     const product = {
 
-        id:
-            "P" +
-            Date.now(),
+    id: "P" + Date.now(),
 
-        farmer:
-            farmerName,
+    farmer: farmerName,
 
-        name:
-            productName,
+    name: productName,
 
-        category:
-            category,
+    category: category,
 
-        price:
-            price,
+    price: price,
 
-        quantity:
-            quantity,
+    quantity: quantity,
 
-        location:
-            location,
+    location: location,
 
-        option:
-            option,
+    latitude:
+        document.getElementById(
+            "farmLatitude"
+        ).value,
 
-        emoji:
-            getCategoryEmoji(
-                category
-            ),
+    longitude:
+        document.getElementById(
+            "farmLongitude"
+        ).value,
 
-        date:
-            new Date().toLocaleString()
+    option: option,
 
-    };
+    emoji: getCategoryEmoji(category),
+
+    date: new Date().toLocaleString()
+};
 
 
 
