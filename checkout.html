@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout | FarmConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        🌱 FarmConnect
+    </div>
+
+    <nav>
+
+        <a href="customer.html">
+            Home
+        </a>
+
+        <a href="fruits.html">
+            Fruits
+        </a>
+
+        <a href="vegetables.html">
+            Vegetables
+        </a>
+
+        <a href="grains.html">
+            Grains
+        </a>
+
+        <a href="cart.html">
+            🛒 Cart
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<section class="products-header">
+
+    <span class="tag">
+        CHECKOUT
+    </span>
+
+    <h1>
+        Complete Your Order
+    </h1>
+
+    <p>
+        Enter your details and choose how
+        you want to receive the product.
+    </p>
+
+</section>
+
+
+
+<section class="checkout-section">
+
+
+    <!-- CUSTOMER DETAILS -->
+
+    <div class="checkout-form">
+
+        <h2>
+            👤 Customer Details
+        </h2>
+
+
+        <label>
+            Full Name
+        </label>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Enter your name"
+        >
+
+
+        <label>
+            Mobile Number
+        </label>
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Enter mobile number"
+        >
+
+
+        <label>
+            Your Location
+        </label>
+
+        <input
+            type="text"
+            id="customerLocation"
+            placeholder="Example: Davangere"
+        >
+
+
+        <label>
+            Additional Address
+        </label>
+
+        <textarea
+            id="customerAddress"
+            placeholder="Enter address / landmark"
+        ></textarea>
+
+
+        <h2 class="checkout-method-title">
+            🛍 Buying Method
+        </h2>
+
+
+        <div class="method-box">
+
+            <label class="method-option">
+
+                <input
+                    type="radio"
+                    name="buyMethod"
+                    value="self"
+                    checked
+                >
+
+                <span>
+                    🟢 Self Buying / Pickup
+                </span>
+
+            </label>
+
+
+            <label class="method-option">
+
+                <input
+                    type="radio"
+                    name="buyMethod"
+                    value="delivery"
+                >
+
+                <span>
+                    🔵 Delivery
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <button
+            class="place-order-btn"
+            onclick="placeOrder()"
+        >
+            ✅ Place Order
+        </button>
+
+
+        <p
+            id="checkoutMessage"
+            class="checkout-message"
+        ></p>
+
+    </div>
+
+
+
+    <!-- ORDER SUMMARY -->
+
+    <div class="checkout-summary">
+
+        <h2>
+            🛒 Order Summary
+        </h2>
+
+
+        <div id="checkoutItems">
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="summary-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="checkoutTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<footer>
+
+    <h3>
+        🌱 FarmConnect
+    </h3>
+
+    <p>
+        Direct Farmer Marketplace • SIH26033
+    </p>
+
+</footer>
+
+
+
+<script src="js/checkout.js"></script>
+
+
+</body>
+
+</html>
