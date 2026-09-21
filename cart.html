@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>FarmConnect | Cart</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f6f8f5;
+            color: #222;
+            animation: pageEnter 0.55s ease-out;
+        }
+
+        @keyframes pageEnter {
+
+            from {
+                opacity: 0;
+                transform: translateY(70px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .topbar {
+
+            background: white;
+
+            padding: 16px 6%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+        .logo {
+
+            color: #198754;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+        }
+
+        .back-btn {
+
+            text-decoration: none;
+
+            background: #edf8f1;
+
+            color: #198754;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .cart-container {
+
+            width: 92%;
+
+            max-width: 1100px;
+
+            margin: 40px auto 70px;
+
+        }
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+        .page-title h1 {
+
+            margin: 0;
+
+            font-size: 34px;
+
+        }
+
+        .page-title p {
+
+            color: #666;
+
+        }
+
+        /* =========================
+           CART LAYOUT
+        ========================= */
+
+        .cart-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 350px;
+
+            gap: 25px;
+
+            align-items: start;
+
+        }
+
+        /* =========================
+           CART ITEMS
+        ========================= */
+
+        .cart-items {
+
+            display: grid;
+
+            gap: 15px;
+
+        }
+
+        .cart-item {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            display: grid;
+
+            grid-template-columns:
+                100px 1fr auto;
+
+            gap: 18px;
+
+            align-items: center;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.07);
+
+        }
+
+        .item-image {
+
+            width: 100px;
+
+            height: 100px;
+
+            border-radius: 14px;
+
+            background: #edf5ec;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+        .item-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .item-emoji {
+
+            font-size: 48px;
+
+        }
+
+        .item-name {
+
+            margin: 0 0 7px;
+
+            font-size: 20px;
+
+        }
+
+        .item-price {
+
+            color: #198754;
+
+            font-weight: bold;
+
+            font-size: 17px;
+
+            margin-bottom: 7px;
+
+        }
+
+        .item-info {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin: 4px 0;
+
+        }
+
+        /* =========================
+           QUANTITY
+        ========================= */
+
+        .quantity-control {
+
+            display: flex;
+
+            align-items: center;
+
+            width: fit-content;
+
+            border: 1px solid #ddd;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+            margin-top: 10px;
+
+        }
+
+        .quantity-control button {
+
+            width: 34px;
+
+            height: 34px;
+
+            border: none;
+
+            background: #f3f3f3;
+
+            font-size: 19px;
+
+            cursor: pointer;
+
+        }
+
+        .quantity-value {
+
+            width: 40px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+        }
+
+        /* =========================
+           RIGHT SIDE
+        ========================= */
+
+        .cart-summary {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 90px;
+
+        }
+
+        .cart-summary h2 {
+
+            margin-top: 0;
+
+        }
+
+        .summary-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 10px 0;
+
+            color: #666;
+
+        }
+
+        .total-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 17px 0;
+
+            border-top: 1px solid #eee;
+
+            margin-top: 10px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+        }
+
+        .total-price {
+
+            color: #198754;
+
+        }
+
+        .checkout-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #198754;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+        }
+
+        .checkout-btn:hover {
+
+            background: #146c43;
+
+        }
+
+        .continue-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background: #f1f1f1;
+
+            color: #555;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+        }
+
+        /* =========================
+           REMOVE
+        ========================= */
+
+        .remove-btn {
+
+            border: none;
+
+            background: #fff0f0;
+
+            color: #dc3545;
+
+            padding: 8px 12px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+
+        }
+
+        /* =========================
+           EMPTY CART
+        ========================= */
+
+        .empty-cart {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 60px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.06);
+
+        }
+
+        .empty-icon {
+
+            font-size: 70px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .empty-cart h2 {
+
+            margin: 0 0 10px;
+
+        }
+
+        .empty-cart p {
+
+            color: #777;
+
+        }
+
+        .shop-btn {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            text-decoration: none;
+
+            background: #198754;
+
+            color: white;
+
+            padding: 13px 22px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 800px) {
+
+            .cart-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .cart-summary {
+
+                position: static;
+
+            }
+
+        }
+
+        @media(max-width: 550px) {
+
+            .logo {
+
+                font-size: 20px;
+
+            }
+
+            .cart-item {
+
+                grid-template-columns:
+                    80px 1fr;
+
+                gap: 12px;
+
+            }
+
+            .item-image {
+
+                width: 80px;
+
+                height: 80px;
+
+            }
+
+            .item-emoji {
+
+                font-size: 38px;
+
+            }
+
+            .item-actions {
+
+                grid-column: 1 / -1;
+
+                display: flex;
+
+                justify-content: space-between;
+
+                align-items: center;
+
+            }
+
+            .page-title h1 {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="topbar">
+
+    <div class="logo">
+
+        🌱 FarmConnect
+
+    </div>
+
+    <a
+        href="customer.html"
+        class="back-btn">
+
+        ← Continue Shopping
+
+    </a>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="cart-container">
+
+
+    <section class="page-title">
+
+        <h1>
+
+            🛒 Your Cart
+
+        </h1>
+
+        <p>
+
+            Review your products before checkout
+
+        </p>
+
+    </section>
+
+
+
+    <div
+        id="emptyCart"
+        class="empty-cart"
+        style="display:none;">
+
+        <div class="empty-icon">
+
+            🛒
+
+        </div>
+
+        <h2>
+
+            Your cart is empty
+
+        </h2>
+
+        <p>
+
+            Add fresh products from nearby farmers.
+
+        </p>
+
+        <a
+            href="products.html"
+            class="shop-btn">
+
+            🥕 Start Shopping
+
+        </a>
+
+    </div>
+
+
+
+    <div
+        id="cartLayout"
+        class="cart-layout">
+
+
+        <!-- =====================
+             CART ITEMS
+        ====================== -->
+
+        <section
+            id="cartItems"
+            class="cart-items">
+
+        </section>
+
+
+
+        <!-- =====================
+             SUMMARY
+        ====================== -->
+
+        <aside class="cart-summary">
+
+            <h2>
+
+                Order Summary
+
+            </h2>
+
+
+            <div class="summary-row">
+
+                <span>
+
+                    Items
+
+                </span>
+
+                <span id="itemCount">
+
+                    0
+
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+
+                    Subtotal
+
+                </span>
+
+                <span id="subtotal">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+
+                    Delivery
+
+                </span>
+
+                <span id="deliveryCharge">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+
+            <div class="total-row">
+
+                <span>
+
+                    Total
+
+                </span>
+
+                <span
+                    id="totalPrice"
+                    class="total-price">
+
+                    ₹0
+
+                </span>
+
+            </div>
+
+
+            <button
+                class="checkout-btn"
+                onclick="goToCheckout()">
+
+                Proceed to Checkout →
+
+            </button>
+
+
+            <button
+                class="continue-btn"
+                onclick="continueShopping()">
+
+                ← Continue Shopping
+
+            </button>
+
+        </aside>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+// ========================================
+// LOAD CART
+// ========================================
+
+let cart = [];
+
+
+
+function loadCart() {
+
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "farmConnectCart"
+                )
+            ) || [];
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Cart loading error:",
+            error
+        );
+
+        cart = [];
+
+    }
+
+
+    renderCart();
+
+}
+
+
+
+// ========================================
+// RENDER CART
+// ========================================
+
+function renderCart() {
+
+
+    const cartItems =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    const cartLayout =
+        document.getElementById(
+            "cartLayout"
+        );
+
+
+    const emptyCart =
+        document.getElementById(
+            "emptyCart"
+        );
+
+
+    if (!cart.length) {
+
+        cartLayout.style.display =
+            "none";
+
+        emptyCart.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    cartLayout.style.display =
+        "grid";
+
+    emptyCart.style.display =
+        "none";
+
+
+    cartItems.innerHTML = "";
+
+
+    let subtotal = 0;
+
+    let totalItems = 0;
+
+
+    cart.forEach(function(item, index) {
+
+
+        const price =
+            Number(item.price) || 0;
+
+
+        const quantity =
+            Number(item.quantity) || 1;
+
+
+        const itemTotal =
+            price * quantity;
+
+
+        subtotal += itemTotal;
+
+        totalItems += quantity;
+
+
+
+        let imageHTML;
+
+
+        if (item.image) {
+
+            imageHTML = `
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    onerror="
+                        this.style.display='none';
+                    "
+                >
+
+            `;
+
+        }
+
+        else {
+
+            imageHTML = `
+
+                <div class="item-emoji">
+
+                    ${item.emoji || "🌾"}
+
+                </div>
+
+            `;
+
+        }
+
+
+
+        const optionText =
+            item.option === "delivery"
+
+                ? "🚚 Delivery Available"
+
+                : "🛍️ Self Buying";
+
+
+
+        cartItems.innerHTML += `
+
+            <div class="cart-item">
+
+
+                <div class="item-image">
+
+                    ${imageHTML}
+
+                </div>
+
+
+                <div>
+
+
+                    <h3 class="item-name">
+
+                        ${item.name}
+
+                    </h3>
+
+
+                    <div class="item-price">
+
+                        ₹${price}/kg
+
+                    </div>
+
+
+                    <div class="item-info">
+
+                        👨‍🌾 ${item.farmer || "Local Farmer"}
+
+                    </div>
+
+
+                    <div class="item-info">
+
+                        📍 ${item.location || "Davangere"}
+
+                    </div>
+
+
+                    <div class="item-info">
+
+                        ${optionText}
+
+                    </div>
+
+
+                    <div class="quantity-control">
+
+
+                        <button
+                            onclick="
+                                decreaseCartQuantity(${index})
+                            ">
+
+                            −
+
+                        </button>
+
+
+                        <span class="quantity-value">
+
+                            ${quantity}
+
+                        </span>
+
+
+                        <button
+                            onclick="
+                                increaseCartQuantity(${index})
+                            ">
+
+                            +
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="item-actions">
+
+
+                    <strong>
+
+                        ₹${itemTotal}
+
+                    </strong>
+
+
+                    <br>
+
+
+                    <button
+                        class="remove-btn"
+                        onclick="
+                            removeFromCart(${index})
+                        ">
+
+                        🗑 Remove
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+    });
+
+
+
+    // SUMMARY
+
+    document.getElementById(
+        "itemCount"
+    ).innerText =
+        totalItems;
+
+
+    document.getElementById(
+        "subtotal"
+    ).innerText =
+        "₹" + subtotal;
+
+
+    // Demo delivery charge
+
+    let deliveryCharge = 0;
+
+
+    const hasDelivery =
+        cart.some(function(item) {
+
+            return item.option === "delivery";
+
+        });
+
+
+    if (hasDelivery) {
+
+        deliveryCharge = 40;
+
+    }
+
+
+    document.getElementById(
+        "deliveryCharge"
+    ).innerText =
+        deliveryCharge === 0
+            ? "Free"
+            : "₹" + deliveryCharge;
+
+
+    const total =
+        subtotal + deliveryCharge;
+
+
+    document.getElementById(
+        "totalPrice"
+    ).innerText =
+        "₹" + total;
+
+}
+
+
+
+// ========================================
+// INCREASE QUANTITY
+// ========================================
+
+function increaseCartQuantity(index) {
+
+
+    const item =
+        cart[index];
+
+
+    const available =
+        Number(
+            item.availableQuantity ||
+            item.stock ||
+            999
+        );
+
+
+    const current =
+        Number(item.quantity) || 1;
+
+
+    if (current >= available) {
+
+        alert(
+            "Maximum available quantity reached."
+        );
+
+        return;
+
+    }
+
+
+    item.quantity =
+        current + 1;
+
+
+    saveCart();
+
+}
+
+
+
+// ========================================
+// DECREASE QUANTITY
+// ========================================
+
+function decreaseCartQuantity(index) {
+
+
+    const item =
+        cart[index];
+
+
+    const current =
+        Number(item.quantity) || 1;
+
+
+    if (current <= 1) {
+
+        removeFromCart(index);
+
+        return;
+
+    }
+
+
+    item.quantity =
+        current - 1;
+
+
+    saveCart();
+
+}
+
+
+
+// ========================================
+// REMOVE PRODUCT
+// ========================================
+
+function removeFromCart(index) {
+
+
+    const productName =
+        cart[index]?.name ||
+        "this product";
+
+
+    const confirmRemove =
+        confirm(
+            "Remove " +
+            productName +
+            " from cart?"
+        );
+
+
+    if (!confirmRemove) {
+
+        return;
+
+    }
+
+
+    cart.splice(
+        index,
+        1
+    );
+
+
+    saveCart();
+
+}
+
+
+
+// ========================================
+// SAVE CART
+// ========================================
+
+function saveCart() {
+
+
+    localStorage.setItem(
+        "farmConnectCart",
+        JSON.stringify(cart)
+    );
+
+
+    renderCart();
+
+}
+
+
+
+// ========================================
+// CHECKOUT
+// ========================================
+
+function goToCheckout() {
+
+
+    if (!cart.length) {
+
+        alert(
+            "Your cart is empty."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "checkout.html";
+
+}
+
+
+
+// ========================================
+// CONTINUE SHOPPING
+// ========================================
+
+function continueShopping() {
+
+    window.location.href =
+        "products.html";
+
+}
+
+
+
+// ========================================
+// START
+// ========================================
+
+loadCart();
+
+</script>
+
+
+</body>
+
+</html>
