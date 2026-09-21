@@ -2212,3 +2212,291 @@ footer p {
 
 }
 
+/* FARMER DASHBOARD */
+
+.dashboard-header {
+
+    text-align: center;
+
+    padding: 60px 20px 30px;
+
+}
+
+
+.dashboard-header h1 {
+
+    margin: 15px 0 8px;
+
+}
+
+
+.dashboard-header p {
+
+    color: #68736c;
+
+}
+
+
+.dashboard-container {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 20px 20px 80px;
+
+}
+
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.stat-card {
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.06);
+
+}
+
+
+.stat-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 12px;
+
+    background: #eef8ef;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+}
+
+
+.stat-card h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 22px;
+
+    color: #16803c;
+
+}
+
+
+.stat-card p {
+
+    margin: 0;
+
+    color: #68736c;
+
+    font-size: 13px;
+
+}
+
+
+.dashboard-section {
+
+    margin-top: 40px;
+
+}
+
+
+.dashboard-section h2 {
+
+    margin-bottom: 20px;
+
+}
+
+
+.action-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.dashboard-action {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #17251b;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.06);
+
+    transition: 0.2s;
+
+}
+
+
+.dashboard-action:hover {
+
+    transform: translateY(-4px);
+
+}
+
+
+.dashboard-action > span {
+
+    font-size: 35px;
+
+}
+
+
+.dashboard-action h3 {
+
+    margin:
+        15px 0 7px;
+
+}
+
+
+.dashboard-action p {
+
+    color: #68736c;
+
+    font-size: 14px;
+
+}
+
+
+.dashboard-info {
+
+    margin-top: 45px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.05);
+
+}
+
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+}
+
+
+.info-grid div {
+
+    text-align: center;
+
+}
+
+
+.info-grid span {
+
+    font-size: 30px;
+
+}
+
+
+.info-grid h3 {
+
+    margin:
+        12px 0 7px;
+
+}
+
+
+.info-grid p {
+
+    color: #68736c;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+@media(max-width: 800px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .action-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width: 500px) {
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
