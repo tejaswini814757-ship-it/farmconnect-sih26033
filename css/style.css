@@ -2786,3 +2786,258 @@ footer p {
 
 }
 
+/* FARMER PRODUCTS */
+
+.farmer-products-section {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 30px 20px 80px;
+
+}
+
+
+.products-top-bar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.products-top-bar h2 {
+
+    margin-bottom: 5px;
+
+}
+
+
+.products-top-bar p {
+
+    color: #68736c;
+
+    margin: 0;
+
+}
+
+
+.farmer-products-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+
+}
+
+
+.farmer-product-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.06);
+
+}
+
+
+.farmer-product-image {
+
+    height: 170px;
+
+    background: #eef8ef;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 75px;
+
+}
+
+
+.farmer-product-content {
+
+    padding: 20px;
+
+}
+
+
+.product-category {
+
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 15px;
+
+    background: #eef8ef;
+
+    color: #16803c;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+}
+
+
+.farmer-product-content h3 {
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.farmer-product-content p {
+
+    color: #68736c;
+
+    font-size: 14px;
+
+    margin: 7px 0;
+
+}
+
+
+.farmer-product-price {
+
+    color: #16803c;
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin: 15px 0 8px;
+
+}
+
+
+.farmer-product-price span {
+
+    font-size: 13px;
+
+    font-weight: normal;
+
+}
+
+
+.farmer-product-bottom {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.delete-product-btn {
+
+    border: none;
+
+    background: #fff0f0;
+
+    color: #c62828;
+
+    padding: 8px 10px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+}
+
+
+.no-products {
+
+    text-align: center;
+
+    background: white;
+
+    padding: 60px 20px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.05);
+
+}
+
+
+.no-products > div {
+
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.no-products p {
+
+    color: #68736c;
+
+    margin: 10px 0 25px;
+
+}
+
+
+@media(max-width: 850px) {
+
+    .farmer-products-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media(max-width: 600px) {
+
+    .products-top-bar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .farmer-products-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
