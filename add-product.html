@@ -174,15 +174,38 @@
 
         <!-- LOCATION -->
 
-        <label>
-            Farm / Product Location *
-        </label>
+        <label for="location">
+    📍 Farm / Product Location
+</label>
 
-        <input
-            type="text"
-            id="productLocation"
-            placeholder="Example: Davangere"
-        >
+<input
+    type="text"
+    id="location"
+    placeholder="Example: Davangere"
+    required
+>
+
+<button
+    type="button"
+    class="secondary-btn"
+    onclick="getFarmLocation()"
+>
+    📍 Use My Farm Location
+</button>
+
+<p id="farmLocationStatus">
+    Farm GPS location not detected
+</p>
+
+<input
+    type="hidden"
+    id="farmLatitude"
+>
+
+<input
+    type="hidden"
+    id="farmLongitude"
+>
 
 
 
