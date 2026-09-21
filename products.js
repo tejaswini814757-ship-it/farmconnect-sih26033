@@ -4,95 +4,59 @@ const demoProducts = {
 
     fruits: [
         {
-            id: "banana",
-            name: "Banana",
-            price: 45,
-            farmer: "Ramesh Farm",
-            distance: "1.2 km away",
-            option: "self",
-            emoji: "🍌"
-        },
-        {
-            id: "apple",
-            name: "Apple",
-            price: 140,
-            farmer: "Shivu Farm",
-            distance: "2.4 km away",
-            option: "delivery",
-            emoji: "🍎"
-        },
-        {
-            id: "orange",
-            name: "Orange",
-            price: 80,
-            farmer: "Kumar Farm",
-            distance: "3.1 km away",
-            option: "self",
-            emoji: "🍊"
-        },
-        {
-            id: "mango",
-            name: "Mango",
-            price: 100,
-            farmer: "Manjunath Farm",
-            distance: "1.8 km away",
-            option: "delivery",
-            emoji: "🥭"
-        },
-        {
-            id: "grapes",
-            name: "Grapes",
-            price: 90,
-            farmer: "Basavaraj Farm",
-            distance: "2.0 km away",
-            option: "self",
-            emoji: "🍇"
-        },
-        {
-            id: "guava",
-            name: "Guava",
-            price: 60,
-            farmer: "Ravi Farm",
-            distance: "1.5 km away",
-            option: "delivery",
-            emoji: "🍐"
-        },
-        {
-            id: "watermelon",
-            name: "Watermelon",
-            price: 35,
-            farmer: "Anand Farm",
-            distance: "2.7 km away",
-            option: "self",
-            emoji: "🍉"
-        },
-        {
-            id: "pineapple",
-            name: "Pineapple",
-            price: 70,
-            farmer: "Mahesh Farm",
-            distance: "3.5 km away",
-            option: "delivery",
-            emoji: "🍍"
-        },
-        {
-            id: "pomegranate",
-            name: "Pomegranate",
-            price: 160,
-            farmer: "Suresh Farm",
-            distance: "2.2 km away",
-            option: "self",
-            emoji: "❤️"
-        },
-        {
-            id: "papaya",
-            name: "Papaya",
-            price: 50,
-            farmer: "Prakash Farm",
-            distance: "1.9 km away",
-            option: "delivery",
-            emoji: "🍈"
-        }
+    id: "banana",
+    name: "Banana",
+    price: 45,
+    farmer: "Ramesh Farm",
+    distance: "1.2 km away",
+    option: "self",
+    emoji: "🍌",
+    image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e"
+},
+
+{
+    id: "apple",
+    name: "Apple",
+    price: 140,
+    farmer: "Shivu Farm",
+    distance: "2.4 km away",
+    option: "delivery",
+    emoji: "🍎",
+    image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6"
+},
+
+{
+    id: "orange",
+    name: "Orange",
+    price: 80,
+    farmer: "Kumar Farm",
+    distance: "3.1 km away",
+    option: "self",
+    emoji: "🍊",
+    image: "https://images.unsplash.com/photo-1547514701-42782101795e"
+},
+
+{
+    id: "mango",
+    name: "Mango",
+    price: 100,
+    farmer: "Manjunath Farm",
+    distance: "1.8 km away",
+    option: "delivery",
+    emoji: "🥭",
+    image: "https://images.unsplash.com/photo-1553279768-865429fa0078"
+},
+
+{
+    id: "grapes",
+    name: "Grapes",
+    price: 90,
+    farmer: "Basavaraj Farm",
+    distance: "2.0 km away",
+    option: "self",
+    emoji: "🍇",
+    image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f"
+}
     ],
 
     vegetables: [
