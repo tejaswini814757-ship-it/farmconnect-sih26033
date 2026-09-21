@@ -366,3 +366,77 @@ document
 
 
 updatePreview();
+
+
+function getFarmLocation() {
+
+    if (!navigator.geolocation) {
+
+        alert(
+            "Location is not supported by this browser."
+        );
+
+        return;
+    }
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            document.getElementById(
+                "farmLatitude"
+            ).value = latitude;
+
+
+            document.getElementById(
+                "farmLongitude"
+            ).value = longitude;
+
+
+            const status =
+                document.getElementById(
+                    "farmLocationStatus"
+                );
+
+
+            if (status) {
+
+                status.innerHTML =
+                    "✅ Farm GPS location captured";
+
+            }
+
+
+            alert(
+                "📍 Farm location captured successfully!"
+            );
+
+        },
+
+
+        function(error) {
+
+            alert(
+                "Unable to get farm location. Please allow location permission."
+            );
+
+        },
+
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+}
