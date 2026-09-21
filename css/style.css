@@ -1659,3 +1659,247 @@ footer p {
 
 }
 
+
+/* CHECKOUT */
+
+.checkout-section {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 50px 20px 80px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 0.7fr;
+
+    gap: 30px;
+
+}
+
+
+.checkout-form,
+.checkout-summary {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 25px
+        rgba(0,0,0,0.06);
+
+}
+
+
+.checkout-form h2,
+.checkout-summary h2 {
+
+    margin-bottom: 22px;
+
+}
+
+
+.checkout-form label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+
+}
+
+
+.checkout-form input,
+.checkout-form textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d9dfdb;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+}
+
+
+.checkout-form textarea {
+
+    height: 90px;
+
+    resize: vertical;
+
+}
+
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+
+    border-color: #16803c;
+
+}
+
+
+.checkout-method-title {
+
+    margin-top: 30px;
+
+}
+
+
+.method-box {
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+
+.method-option {
+
+    border: 1px solid #dce3de;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+}
+
+
+.method-option input {
+
+    width: auto;
+
+    margin-right: 10px;
+
+}
+
+
+.place-order-btn {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #16803c;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.checkout-message {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #c62828;
+
+}
+
+
+.checkout-item {
+
+    display: grid;
+
+    grid-template-columns:
+        60px 1fr auto;
+
+    gap: 12px;
+
+    align-items: center;
+
+    padding: 15px 0;
+
+    border-bottom:
+        1px solid #eeeeee;
+
+}
+
+
+.checkout-item-image {
+
+    width: 55px;
+
+    height: 55px;
+
+    background: #eef8ef;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 30px;
+
+}
+
+
+.checkout-item h3 {
+
+    margin-bottom: 5px;
+
+}
+
+
+.checkout-item p {
+
+    font-size: 13px;
+
+    color: #68736c;
+
+    margin: 3px 0;
+
+}
+
+
+.checkout-item > strong {
+
+    color: #16803c;
+
+}
+
+
+@media(max-width: 750px) {
+
+    .checkout-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
