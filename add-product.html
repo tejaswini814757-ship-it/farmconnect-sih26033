@@ -733,6 +733,8 @@ function saveProduct(){
        GET OLD PRODUCTS
     ===================================== */
 
+    localStorage.removeItem("farmConnectProducts");
+
     let products = [];
 
     try{
