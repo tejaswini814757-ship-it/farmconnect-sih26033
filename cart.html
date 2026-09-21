@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cart | FarmConnect</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        🌱 FarmConnect
+    </div>
+
+    <nav>
+
+        <a href="customer.html">
+            Home
+        </a>
+
+        <a href="fruits.html">
+            Fruits
+        </a>
+
+        <a href="vegetables.html">
+            Vegetables
+        </a>
+
+        <a href="grains.html">
+            Grains
+        </a>
+
+        <a href="cart.html">
+            🛒 Cart
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- CART HEADER -->
+
+<section class="products-header">
+
+    <span class="tag">
+        YOUR SHOPPING CART
+    </span>
+
+    <h1>
+        🛒 My Cart
+    </h1>
+
+    <p>
+        Review your selected products before
+        continuing.
+    </p>
+
+</section>
+
+
+
+<!-- CART -->
+
+<section class="cart-section">
+
+
+    <div
+        id="cartItems"
+        class="cart-items"
+    >
+
+        <!-- Products will appear here -->
+
+    </div>
+
+
+
+    <!-- EMPTY CART -->
+
+    <div
+        id="emptyCart"
+        class="empty-cart"
+    >
+
+        <div>
+            🛒
+        </div>
+
+        <h2>
+            Your cart is empty
+        </h2>
+
+        <p>
+            Add some fresh products from
+            nearby farmers.
+        </p>
+
+        <a
+            href="customer.html"
+            class="main-btn"
+        >
+            Start Shopping
+        </a>
+
+    </div>
+
+
+
+    <!-- CART SUMMARY -->
+
+    <div
+        id="cartSummary"
+        class="cart-summary"
+    >
+
+        <h2>
+            Order Summary
+        </h2>
+
+
+        <div class="summary-row">
+
+            <span>
+                Subtotal
+            </span>
+
+            <strong id="subtotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-row">
+
+            <span>
+                Products
+            </span>
+
+            <strong id="itemCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="summary-total">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="grandTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <button
+            class="checkout-btn"
+            onclick="proceedToCheckout()"
+        >
+            Continue →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<footer>
+
+    <h3>
+        🌱 FarmConnect
+    </h3>
+
+    <p>
+        Direct Farmer Marketplace • SIH26033
+    </p>
+
+</footer>
+
+
+
+<script src="js/cart.js"></script>
+
+
+</body>
+
+</html>
