@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vegetables | FarmConnect</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🌾 FarmConnect
+    </div>
+
+    <a href="customer.html" class="secondary-btn">
+        ← Back
+    </a>
+
+</header>
+
+
+<section class="customer-section">
+
+    <div class="section-heading">
+
+        <h1>🥕 Fresh Vegetables</h1>
+
+        <p>
+            Buy directly from nearby farmers
+        </p>
+
+    </div>
+
+
+    <div id="productList" class="product-grid"></div>
+
+</section>
+
+
+<script src="js/products.js"></script>
+
+
+<script>
+
+const products = getProductsByCategory("vegetables");
+
+const productList =
+    document.getElementById("productList");
+
+
+function showProducts() {
+
+    productList.innerHTML = "";
+
+
+    if (products.length === 0) {
+
+        productList.innerHTML = `
+
+            <div class="empty-state">
+
+                <h2>No vegetables available</h2>
+
+                <p>
+                    Farmers have not added vegetables yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    products.forEach(product => {
+
+        const optionText =
+            product.option === "self"
+            ? "🛍 Self Buying"
+            : "🚚 Delivery Available";
+
+
+        const productId =
+            product.farmerProduct
+            ? "farmer_" + product.id
+            : product.id;
+
+
+        productList.innerHTML += `
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span style="font-size:70px;">
+                        ${product.emoji}
+                    </span>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>${product.name}</h3>
+
+                    <h2>₹${product.price}/kg</h2>
+
+
+                    <p>
+                        👨‍🌾 ${product.farmer}
+                    </p>
+
+
+                    <p>
+                        📍 ${product.distance || product.location}
+                    </p>
+
+
+                    <span class="${
+                        product.option === "self"
+                        ? "self-buy"
+                        : "delivery"
+                    }">
+
+                        ${optionText}
+
+                    </span>
+
+
+                    <br><br>
+
+
+                    <a
+                        href="product.html?product=${productId}"
+                        class="main-btn"
+                    >
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+showProducts();
+
+</script>
+
+</body>
+</html>
