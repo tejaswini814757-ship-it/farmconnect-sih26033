@@ -109,103 +109,38 @@
 
         <!-- FRUITS -->
 
-        <a
-            href="fruits.html"
-            class="category-card"
-        >
+        <div class="category-box">
 
-            <div class="category-icon">
-                🍎
-            </div>
+    <h2>🛒 Shop by Category</h2>
 
-            <div class="category-info">
+    <select id="categorySelect" class="category-spinner">
 
-                <h3>
-                    Fruits
-                </h3>
+        <option value="">
+            Select Category
+        </option>
 
-                <p>
-                    Fresh seasonal fruits
-                    from local farmers.
-                </p>
+        <option value="fruits">
+            🍎 Fruits
+        </option>
 
-                <span>
-                    View Fruits →
-                </span>
+        <option value="vegetables">
+            🥕 Vegetables
+        </option>
 
-            </div>
+        <option value="grains">
+            🌾 Grains
+        </option>
 
-        </a>
+    </select>
 
+    <button
+        class="main-btn"
+        onclick="openCategory()"
+    >
+        View Products
+    </button>
 
-
-        <!-- VEGETABLES -->
-
-        <a
-            href="vegetables.html"
-            class="category-card"
-        >
-
-            <div class="category-icon">
-                🥦
-            </div>
-
-            <div class="category-info">
-
-                <h3>
-                    Vegetables
-                </h3>
-
-                <p>
-                    Fresh vegetables
-                    directly from farms.
-                </p>
-
-                <span>
-                    View Vegetables →
-                </span>
-
-            </div>
-
-        </a>
-
-
-
-        <!-- GRAINS -->
-
-        <a
-            href="grains.html"
-            class="category-card"
-        >
-
-            <div class="category-icon">
-                🌾
-            </div>
-
-            <div class="category-info">
-
-                <h3>
-                    Grains
-                </h3>
-
-                <p>
-                    Rice, millets and grains
-                    from farmers.
-                </p>
-
-                <span>
-                    View Grains →
-                </span>
-
-            </div>
-
-        </a>
-
-
-    </div>
-
-</section>
-
+        </div>
 
 
 <!-- NEARBY SECTION -->
@@ -337,6 +272,42 @@ function getCustomerLocation() {
 
 </script>
 <script src="js/location.js"></script>
+
+        <script>
+
+function openCategory() {
+
+    const category =
+        document.getElementById("categorySelect").value;
+
+    if (!category) {
+
+        alert("Please select a category.");
+
+        return;
+    }
+
+    if (category === "fruits") {
+
+        window.location.href = "fruits.html";
+
+    }
+
+    else if (category === "vegetables") {
+
+        window.location.href = "vegetables.html";
+
+    }
+
+    else if (category === "grains") {
+
+        window.location.href = "grains.html";
+
+    }
+
+}
+
+        </script>
 
 </body>
 
