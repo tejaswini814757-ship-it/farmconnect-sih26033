@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>FarmConnect | Customer</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f6f8f5;
+
+            color: #222;
+
+            animation:
+                pageEnter
+                0.8s
+                ease-out
+                both;
+
+        }
+
+
+        /* =====================================
+           FULL PAGE OPEN ANIMATION
+        ===================================== */
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(90px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================
+           LOCATION SECTION HIGHLIGHT
+        ===================================== */
+
+        #locationSection {
+
+            animation:
+                locationEnter
+                1s
+                ease-out
+                both;
+
+            animation-delay:
+                0.4s;
+
+        }
+
+
+        @keyframes locationEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(80px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================
+           PRODUCT CARD ANIMATION
+        ===================================== */
+
+        .product-card {
+
+            animation:
+                productSwipeUp
+                0.65s
+                ease-out
+                both;
+
+        }
+
+
+        @keyframes productSwipeUp {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(70px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        .topbar {
+
+            background: white;
+
+            padding: 16px 6%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            color: #198754;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+        }
+
+
+        .cart-btn {
+
+            text-decoration: none;
+
+            color: #198754;
+
+            font-weight: bold;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            background:
+                #edf8f1;
+
+        }
+
+
+        /* =====================================
+           HERO
+        ===================================== */
+
+        .hero {
+
+            text-align: center;
+
+            padding:
+                55px
+                20px
+                30px;
+
+        }
+
+
+        .hero h1 {
+
+            margin: 0;
+
+            font-size: 35px;
+
+        }
+
+
+        .hero p {
+
+            color: #666;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================
+           LOCATION
+        ===================================== */
+
+        .location-card {
+
+            width: 92%;
+
+            max-width: 800px;
+
+            margin:
+                20px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+            text-align: center;
+
+            scroll-margin-top: 90px;
+
+        }
+
+
+        .location-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .location-card h2 {
+
+            margin:
+                5px 0 8px;
+
+        }
+
+
+        .location-card p {
+
+            color: #666;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .location-btn {
+
+            border: none;
+
+            background: #198754;
+
+            color: white;
+
+            padding:
+                14px 25px;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                0.25s;
+
+        }
+
+
+        .location-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #146c43;
+
+        }
+
+
+        #locationStatus {
+
+            margin-top: 14px;
+
+            color: #666;
+
+            font-size: 14px;
+
+            min-height: 20px;
+
+        }
+
+
+        /* =====================================
+           CATEGORY
+        ===================================== */
+
+        .category-card {
+
+            width: 92%;
+
+            max-width: 800px;
+
+            margin:
+                30px auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.08);
+
+            text-align: center;
+
+        }
+
+
+        .category-card h2 {
+
+            margin-top: 0;
+
+        }
+
+
+        .category-card p {
+
+            color: #666;
+
+        }
+
+
+        .category-select {
+
+            width: 100%;
+
+            max-width: 550px;
+
+            padding: 15px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            margin:
+                15px 0;
+
+            background: white;
+
+            outline: none;
+
+        }
+
+
+        .category-select:focus {
+
+            border-color:
+                #198754;
+
+        }
+
+
+        .products-btn {
+
+            border: none;
+
+            background:
+                #ff7200;
+
+            color: white;
+
+            padding:
+                14px 28px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                0.25s;
+
+        }
+
+
+        .products-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #e56500;
+
+        }
+
+
+        /* =====================================
+           PRODUCTS AREA
+        ===================================== */
+
+        .products-area {
+
+            width: 92%;
+
+            max-width: 1200px;
+
+            margin:
+                80px auto;
+
+            padding-bottom:
+                80px;
+
+            scroll-margin-top:
+                90px;
+
+        }
+
+
+        .products-area h2 {
+
+            margin-bottom:
+                22px;
+
+            font-size: 26px;
+
+        }
+
+
+        .product-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        /* =====================================
+           PRODUCT CARD
+        ===================================== */
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.08);
+
+            transition:
+                transform
+                0.25s,
+                box-shadow
+                0.25s;
+
+        }
+
+
+        .product-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.12);
+
+        }
+
+
+        .product-image {
+
+            height: 190px;
+
+            background:
+                #edf4ec;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .product-emoji {
+
+            font-size: 75px;
+
+        }
+
+
+        .product-info {
+
+            padding: 16px;
+
+        }
+
+
+        .product-info h3 {
+
+            margin:
+                0 0 8px;
+
+            font-size: 19px;
+
+        }
+
+
+        .price {
+
+            color:
+                #198754;
+
+            font-size: 19px;
+
+            font-weight: bold;
+
+            margin-bottom:
+                10px;
+
+        }
+
+
+        .info {
+
+            color: #666;
+
+            font-size: 14px;
+
+            margin:
+                7px 0;
+
+        }
+
+
+        .view-btn {
+
+            width: 100%;
+
+            border: none;
+
+            background:
+                #198754;
+
+            color: white;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            margin-top:
+                10px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                0.2s;
+
+        }
+
+
+        .view-btn:hover {
+
+            background:
+                #146c43;
+
+        }
+
+
+        /* =====================================
+           EMPTY BOX
+        ===================================== */
+
+        .empty-box {
+
+            grid-column:
+                1 / -1;
+
+            background: white;
+
+            padding:
+                50px 20px;
+
+            text-align: center;
+
+            border-radius: 18px;
+
+            color: #777;
+
+        }
+
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media(max-width: 950px) {
+
+            .product-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media(max-width: 650px) {
+
+            .logo {
+
+                font-size: 20px;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 28px;
+
+            }
+
+
+            .location-card,
+            .category-card {
+
+                padding:
+                    25px 18px;
+
+            }
+
+
+            .product-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 12px;
+
+            }
+
+
+            .product-image {
+
+                height: 155px;
+
+            }
+
+
+            .product-info {
+
+                padding: 12px;
+
+            }
+
+
+            .product-info h3 {
+
+                font-size: 16px;
+
+            }
+
+
+            .price {
+
+                font-size: 17px;
+
+            }
+
+        }
+
+
+        /* =====================================
+           SMALL MOBILE
+        ===================================== */
+
+        @media(max-width: 400px) {
+
+            .product-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .product-image {
+
+                height: 210px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="topbar">
+
+
+    <div class="logo">
+
+        🌱 FarmConnect
+
+    </div>
+
+
+    <a
+        href="cart.html"
+        class="cart-btn">
+
+        🛒 Cart
+
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+
+    <h1>
+
+        Farm Fresh Marketplace 🥕
+
+    </h1>
+
+
+    <p>
+
+        Buy directly from nearby farmers
+        at fair prices
+
+    </p>
+
+
+</section>
+
+
+
+<!-- =========================================
+     LOCATION SECTION
+
+     IMPORTANT:
+     id="locationSection"
+========================================= -->
+
+<section
+    id="locationSection"
+    class="location-card">
+
+
+    <div class="location-icon">
+
+        📍
+
+    </div>
+
+
+    <h2>
+
+        Find Farmers Near You
+
+    </h2>
+
+
+    <p>
+
+        Allow your location to discover
+        nearby farm products.
+
+    </p>
+
+
+    <button
+        class="location-btn"
+        onclick="getCustomerLocation()">
+
+        📍 Use My Location
+
+    </button>
+
+
+    <div id="locationStatus">
+
+        Location not detected
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     CATEGORY SECTION
+========================================= -->
+
+<section class="category-card">
+
+
+    <h2>
+
+        🛒 Shop by Category
+
+    </h2>
+
+
+    <p>
+
+        Choose what you want to buy
+
+    </p>
+
+
+    <select
+        id="categorySelect"
+        class="category-select">
+
+
+        <option value="">
+
+            Select Category
+
+        </option>
+
+
+        <option value="fruits">
+
+            🍎 Fruits
+
+        </option>
+
+
+        <option value="vegetables">
+
+            🥕 Vegetables
+
+        </option>
+
+
+        <option value="grains">
+
+            🌾 Grains
+
+        </option>
+
+
+    </select>
+
+
+    <button
+        class="products-btn"
+        onclick="loadProducts()">
+
+        View Products
+
+    </button>
+
+
+</section>
+
+
+
+<!-- =========================================
+     PRODUCTS SECTION
+
+     IMPORTANT:
+     id="productsArea"
+========================================= -->
+
+<section
+    id="productsArea"
+    class="products-area">
+
+
+    <h2 id="productsTitle">
+
+        🛍️ Products
+
+    </h2>
+
+
+    <div
+        id="productGrid"
+        class="product-grid">
+
+
+        <div class="empty-box">
+
+            👆 Select a category and click
+
+            <b>
+
+                View Products
+
+            </b>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     JAVASCRIPT FILES
+========================================= -->
+
+<script src="js/location.js"></script>
+
+<script src="js/products.js"></script>
+
+
+
+<script>
+
+
+/* ==========================================
+   CUSTOMER PAGE OPEN
+
+   AUTOMATICALLY MOVE TO LOCATION
+========================================== */
+
+window.addEventListener(
+    "load",
+    function() {
+
+
+        setTimeout(
+            function() {
+
+
+                const locationSection =
+                    document.getElementById(
+                        "locationSection"
+                    );
+
+
+                if (
+                    locationSection
+                ) {
+
+
+                    locationSection.scrollIntoView({
+
+                        behavior:
+                            "smooth",
+
+                        block:
+                            "center"
+
+                    });
+
+                }
+
+
+            },
+            650
+        );
+
+
+    }
+);
+
+
+
+
+/* ==========================================
+   LOAD PRODUCTS
+========================================== */
+
+function loadProducts() {
+
+
+    const category =
+        document.getElementById(
+            "categorySelect"
+        ).value;
+
+
+    const grid =
+        document.getElementById(
+            "productGrid"
+        );
+
+
+    const title =
+        document.getElementById(
+            "productsTitle"
+        );
+
+
+    const productsArea =
+        document.getElementById(
+            "productsArea"
+        );
+
+
+    /* --------------------------------------
+       CHECK CATEGORY
+    -------------------------------------- */
+
+    if (!category) {
+
+
+        alert(
+            "Please select a category."
+        );
+
+
+        return;
+
+    }
+
+
+    let products = [];
+
+
+    /* --------------------------------------
+       GET PRODUCTS
+    -------------------------------------- */
+
+    try {
+
+
+        products =
+            getProductsByCategory(
+                category
+            );
+
+
+    }
+
+    catch(error) {
+
+
+        console.error(error);
+
+
+        grid.innerHTML = `
+
+            <div class="empty-box">
+
+                ❌ Products could not be loaded.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    /* --------------------------------------
+       CLEAR OLD PRODUCTS
+    -------------------------------------- */
+
+    grid.innerHTML = "";
+
+
+
+    /* --------------------------------------
+       CATEGORY TITLE
+    -------------------------------------- */
+
+    const titles = {
+
+
+        fruits:
+            "🍎 Fresh Fruits",
+
+
+        vegetables:
+            "🥕 Fresh Vegetables",
+
+
+        grains:
+            "🌾 Fresh Grains"
+
+
+    };
+
+
+    title.innerText =
+        titles[category];
+
+
+
+    /* --------------------------------------
+       EMPTY CHECK
+    -------------------------------------- */
+
+    if (!products.length) {
+
+
+        grid.innerHTML = `
+
+            <div class="empty-box">
+
+                😔 No products available.
+
+            </div>
+
+        `;
+
+
+    }
+
+
+
+    /* --------------------------------------
+       CREATE PRODUCT CARDS
+    -------------------------------------- */
+
+    products.forEach(
+        function(product, index) {
+
+
+        const id =
+            product.id ||
+            product.name
+                .toLowerCase()
+                .replace(
+                    /\s+/g,
+                    "-"
+                );
+
+
+
+        /* DISTANCE */
+
+        let distance =
+            product.distance ||
+            "Distance unavailable";
+
+
+        if (
+            typeof getProductDistance ===
+            "function"
+        ) {
+
+
+            try {
+
+
+                distance =
+                    getProductDistance(
+                        product
+                    );
+
+
+            }
+
+            catch(error) {
+
+
+                distance =
+                    product.distance ||
+                    "Distance unavailable";
+
+
+            }
+
+
+        }
+
+
+
+        /* IMAGE */
+
+        let image;
+
+
+        if (product.image) {
+
+
+            image = `
+
+                <img
+
+                    src="${product.image}"
+
+                    alt="${product.name}"
+
+                    onerror="
+                        this.style.display='none';
+                    "
+
+                >
+
+            `;
+
+
+        }
+
+        else {
+
+
+            image = `
+
+                <div class="product-emoji">
+
+                    ${product.emoji || "🌾"}
+
+                </div>
+
+            `;
+
+
+        }
+
+
+
+        /* BUYING OPTION */
+
+        const buyingOption =
+
+            product.option ===
+            "delivery"
+
+                ? "🚚 Delivery Available"
+
+                : "🛍️ Self Buying";
+
+
+
+        /* PRODUCT CARD */
+
+        grid.innerHTML += `
+
+            <div
+
+                class="product-card"
+
+                style="
+                    animation-delay:
+                    ${index * 0.06}s;
+                "
+
+            >
+
+
+                <div
+                    class="product-image">
+
+                    ${image}
+
+                </div>
+
+
+
+                <div
+                    class="product-info">
+
+
+                    <h3>
+
+                        ${product.name}
+
+                    </h3>
+
+
+                    <div class="price">
+
+                        ₹${product.price}/kg
+
+                    </div>
+
+
+                    <div class="info">
+
+                        👨‍🌾
+                        ${product.farmer}
+
+                    </div>
+
+
+                    <div class="info">
+
+                        📍
+                        ${
+                            product.location ||
+                            "Davangere"
+                        }
+
+                    </div>
+
+
+                    <div class="info">
+
+                        📏
+                        ${distance}
+
+                    </div>
+
+
+                    <div class="info">
+
+                        ${buyingOption}
+
+                    </div>
+
+
+                    <button
+
+                        class="view-btn"
+
+                        onclick="
+                            
