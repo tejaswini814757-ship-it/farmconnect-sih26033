@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Product - FarmConnect</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Georgia,serif;
+    background:#f5f7f2;
+    color:#17251c;
+}
+
+.page{
+    max-width:850px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    padding:18px 20px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.logo{
+    color:#176b45;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.back{
+    text-decoration:none;
+    background:#e8f5ed;
+    color:#176b45;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:25px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    color:#176b45;
+    margin-top:0;
+}
+
+label{
+    display:block;
+    font-size:18px;
+    font-weight:bold;
+    margin:20px 0 8px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:15px;
+    border:1px solid #d8ddd9;
+    border-radius:14px;
+    font-size:16px;
+    background:#fff;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.camera-box{
+    border:2px dashed #4d9b70;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    background:#f7fcf8;
+}
+
+.camera-button{
+    display:inline-block;
+    background:#176b45;
+    color:white;
+    padding:15px 22px;
+    border-radius:14px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:17px;
+}
+
+#imagePreview{
+    width:100%;
+    max-height:260px;
+    object-fit:contain;
+    margin-top:15px;
+    border-radius:15px;
+    display:none;
+    background:#eef3ef;
+}
+
+.add-btn{
+    width:100%;
+    margin-top:25px;
+    padding:17px;
+    border:none;
+    border-radius:15px;
+    background:#075c4f;
+    color:white;
+    font-size:19px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.add-btn:active{
+    transform:scale(.98);
+}
+
+.pageEnter{
+    animation:pageIn .55s ease;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:600px){
+
+    .page{
+        padding:12px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .logo{
+        font-size:21px;
+    }
+
+    label{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body class="pageEnter">
+
+<div class="page">
+
+    <div class="header">
+        <div class="logo">🌱 FarmConnect</div>
+
+        <a href="farmer.html" class="back">
+            ← Back
+        </a>
+    </div>
+
+
+    <div class="card">
+
+        <h1>🌾 Add New Product</h1>
+
+
+        <!-- CAMERA -->
+        <label>📷 Product Photo</label>
+
+        <div class="camera-box">
+
+            <label
+                for="productImageInput"
+                class="camera-button">
+                📷 Take Product Photo
+            </label>
+
+            <input
+                type="file"
+                id="productImageInput"
+                accept="image/*"
+                capture="environment"
+                style="display:none;"
+            >
+
+            <img
+                id="imagePreview"
+                alt="Product Preview"
+            >
+
+        </div>
+
+
+        <!-- PRODUCT NAME -->
+        <label>🥕 Product Name</label>
+
+        <input
+            type="text"
+            id="productName"
+            placeholder="Example: Tomato"
+        >
+
+
+        <!-- CATEGORY -->
+        <label>📂 Category</label>
+
+        <select id="productCategory">
+
+            <option value="">
+                Select Category
+            </option>
+
+            <option value="fruits">
+                Fruits
+            </option>
+
+            <option value="vegetables">
+                Vegetables
+            </option>
+
+            <option value="grains">
+                Grains
+            </option>
+
+        </select>
+
+
+        <!-- PRICE -->
+        <label>💰 Price (₹ / kg)</label>
+
+        <input
+            type="number"
+            id="productPrice"
+            placeholder="Example: 40"
+            min="1"
+        >
+
+
+        <!-- QUANTITY -->
+        <label>⚖️ Available Quantity (kg)</label>
+
+        <input
+            type="number"
+            id="productQuantity"
+            placeholder="Example: 200"
+            min="1"
+        >
+
+
+        <!-- FARMER -->
+        <label>👨‍🌾 Farmer Name</label>
+
+        <input
+            type="text"
+            id="farmerName"
+            placeholder="Farmer Name"
+        >
+
+
+        <!-- LOCATION -->
+        <label>📍 Farm / Product Location</label>
+
+        <input
+            type="text"
+            id="productLocation"
+            placeholder="Example: Davangere"
+        >
+
+
+        <!-- BUYING OPTION -->
+        <label>🚚 Buying Option</label>
+
+        <select id="buyingOption">
+
+            <option value="">
+                Select Buying Option
+            </option>
+
+            <option value="self">
+                🧺 Self Buying / Pickup
+            </option>
+
+            <option value="delivery">
+                🚚 Delivery Available
+            </option>
+
+        </select>
+
+
+        <!-- DESCRIPTION -->
+        <label>📝 Product Description</label>
+
+        <textarea
+            id="productDescription"
+            placeholder="Example: Fresh farm product"
+        ></textarea>
+
+
+        <!-- BUTTON -->
+        <button
+            class="add-btn"
+            id="addProductBtn"
+            type="button"
+        >
+            ✅ Add Product
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   GLOBAL PHOTO VARIABLE
+========================================= */
+
+let compressedImage = "";
+
+
+/* =========================================
+   CAMERA PHOTO
+========================================= */
+
+document
+.getElementById("productImageInput")
+.addEventListener("change", function(event){
+
+    const file = event.target.files[0];
+
+    if(!file){
+        return;
+    }
+
+    if(!file.type.startsWith("image/")){
+        alert("Please select a valid image.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        const preview =
+            document.getElementById("imagePreview");
+
+        preview.src = e.target.result;
+        preview.style.display = "block";
+
+        compressImage(file);
+    };
+
+    reader.onerror = function(){
+
+        alert("Unable to read photo. Please try again.");
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =========================================
+   COMPRESS PHOTO
+   VERY SMALL IMAGE
+========================================= */
+
+function compressImage(file){
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+
+        const img = new Image();
+
+        img.onload = function(){
+
+            const canvas =
+                document.createElement("canvas");
+
+            /*
+             * SMALL SIZE
+             * This prevents localStorage problems.
+             */
+
+            const MAX_SIZE = 350;
+
+            let width = img.width;
+            let height = img.height;
+
+
+            if(width > height){
+
+                if(width > MAX_SIZE){
+
+                    height =
+                        Math.round(
+                            height * MAX_SIZE / width
+                        );
+
+                    width = MAX_SIZE;
+                }
+
+            }else{
+
+                if(height > MAX_SIZE){
+
+                    width =
+                        Math.round(
+                            width * MAX_SIZE / height
+                        );
+
+                    height = MAX_SIZE;
+                }
+
+            }
+
+
+            canvas.width = width;
+            canvas.height = height;
+
+
+            const ctx =
+                canvas.getContext("2d");
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
+
+
+            /*
+             * LOW JPEG QUALITY
+             * Small storage size
+             */
+
+            compressedImage =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.35
+                );
+
+        };
+
+
+        img.onerror = function(){
+
+            compressedImage = "";
+
+        };
+
+
+        img.src = event.target.result;
+
+    };
+
+
+    reader.onerror = function(){
+
+        compressedImage = "";
+
+    };
+
+
+    reader.readAsDataURL(file);
+}
+
+
+/* =========================================
+   ADD PRODUCT
+========================================= */
+
+document
+.getElementById("addProductBtn")
+.addEventListener("click", function(){
+
+    const name =
+        document
+        .getElementById("productName")
+        .value
+        .trim();
+
+    const category =
+        document
+        .getElementById("productCategory")
+        .value;
+
+    const price =
+        document
+        .getElementById("productPrice")
+        .value;
+
+    const quantity =
+        document
+        .getElementById("productQuantity")
+        .value;
+
+    const farmer =
+        document
+        .getElementById("farmerName")
+        .value
+        .trim();
+
+    const location =
+        document
+        .getElementById("productLocation")
+        .value
+        .trim();
+
+    const option =
+        document
+        .getElementById("buyingOption")
+        .value;
+
+    const description =
+        document
+        .getElementById("productDescription")
+        .value
+        .trim();
+
+
+    /* =====================================
+       VALIDATION
+    ===================================== */
+
+    if(!name){
+
+        alert("Please enter product name.");
+        return;
+
+    }
+
+
+    if(!category){
+
+        alert("Please select category.");
+        return;
+
+    }
+
+
+    if(!price || Number(price) <= 0){
+
+        alert("Please enter valid price.");
+        return;
+
+    }
+
+
+    if(!quantity || Number(quantity) <= 0){
+
+        alert("Please enter valid quantity.");
+        return;
+
+    }
+
+
+    if(!farmer){
+
+        alert("Please enter farmer name.");
+        return;
+
+    }
+
+
+    if(!location){
+
+        alert("Please enter product location.");
+        return;
+
+    }
+
+
+    if(!option){
+
+        alert("Please select buying option.");
+        return;
+
+    }
+
+
+    /* =====================================
+       WAIT FOR PHOTO COMPRESSION
+    ===================================== */
+
+    const button =
+        document.getElementById("addProductBtn");
+
+    button.disabled = true;
+
+    button.innerText =
+        "⏳ Saving Product...";
+
+
+    setTimeout(function(){
+
+        saveProduct();
+
+    }, 300);
+
+});
+
+
+/* =========================================
+   SAVE PRODUCT
+========================================= */
+
+function saveProduct(){
+
+    const name =
+        document
+        .getElementById("productName")
+        .value
+        .trim();
+
+    const category =
+        document
+        .getElementById("productCategory")
+        .value;
+
+    const price =
+        Number(
+            document
+            .getElementById("productPrice")
+            .value
+        );
+
+    const quantity =
+        Number(
+            document
+            .getElementById("productQuantity")
+            .value
+        );
+
+    const farmer =
+        document
+        .getElementById("farmerName")
+        .value
+        .trim();
+
+    const location =
+        document
+        .getElementById("productLocation")
+        .value
+        .trim();
+
+    const option =
+        document
+        .getElementById("buyingOption")
+        .value;
+
+    const description =
+        document
+        .getElementById("productDescription")
+        .value
+        .trim();
+
+
+    /* =====================================
+       PRODUCT OBJECT
+    ===================================== */
+
+    const product = {
+
+        id:
+            "farmer_" +
+            Date.now(),
+
+        name:name,
+
+        category:category,
+
+        price:price,
+
+        quantity:quantity,
+
+        farmer:farmer,
+
+        location:location,
+
+        distance:"Nearby",
+
+        option:option,
+
+        description:
+            description || "Fresh farm product",
+
+        emoji:
+            category === "fruits"
+            ? "🍎"
+            : category === "vegetables"
+            ? "🥕"
+            : "🌾",
+
+        farmerProduct:true,
+
+        /*
+         * COMPRESSED IMAGE
+         */
+
+        image:
+            compressedImage || ""
+
+    };
+
+
+    /* =====================================
+       GET OLD PRODUCTS
+    ===================================== */
+
+    let products = [];
+
+    try{
+
+        const oldData =
+            localStorage.getItem(
+                "farmConnectProducts"
+            );
+
+        if(oldData){
+
+            const parsed =
+                JSON.parse(oldData);
+
+            if(Array.isArray(parsed)){
+
+                products = parsed;
+
+            }
+
+        }
+
+    }catch(error){
+
+        products = [];
+
+    }
+
+
+    /* =====================================
+       REMOVE VERY LARGE OLD IMAGES
+       ONLY OLD FARMER PRODUCTS
+    ===================================== */
+
+    products =
+        products.map(function(item){
+
+            if(
+                item &&
+                item.farmerProduct === true
+            ){
+
+                /*
+                 * Keep only if reasonably small.
+                 * This prevents old huge photos
+                 * from filling storage.
+                 */
+
+                if(
+                    typeof item.image === "string" &&
+                    item.image.length > 250000
+                ){
+
+                    item.image = "";
+
+                }
+
+            }
+
+            return item;
+
+        });
+
+
+    products.push(product);
+
+
+    /* =====================================
+       SAVE
+    ===================================== */
+
+    try{
+
+        localStorage.setItem(
+            "farmConnectProducts",
+            JSON.stringify(products)
+        );
+
+
+        alert(
+            "✅ Product added successfully!"
+        );
+
+
+        window.location.href =
+            "farmer-products.html";
+
+
+    }catch(error){
+
+        /*
+         * If browser is already full,
+         * remove old farmer images and retry.
+         */
+
+        try{
+
+            products =
+                products.map(function(item){
+
+                    if(
+                        item &&
+                        item.farmerProduct === true
+                    ){
+
+                        item.image = "";
+
+                    }
+
+                    return item;
+
+                });
+
+
+            localStorage.setItem(
+                "farmConnectProducts",
+                JSON.stringify(products)
+            );
+
+
+            alert(
+                "✅ Product added successfully!\n\n" +
+                "Old large photos were removed to free storage."
+            );
+
+
+            window.location.href =
+                "farmer-products.html";
+
+
+        }catch(secondError){
+
+            alert(
+                "Storage full.\n\n" +
+                "Please open Farmer Products and delete old products, then try again."
+            );
+
+
+            const button =
+                document
+                .getElementById("addProductBtn");
+
+            button.disabled = false;
+
+            button.innerText =
+                "✅ Add Product";
+
+        }
+
+    }
+
+}
+
+</script>
+
+</body>
+  </html>
