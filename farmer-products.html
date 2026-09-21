@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Products | FarmConnect</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            background: #f5f8f5;
+
+            color: #18251c;
+
+            animation:
+                pageEnter
+                0.6s
+                ease-out;
+
+        }
+
+
+        @keyframes pageEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(70px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+
+            background: white;
+
+            padding: 15px 6%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            box-shadow:
+                0 2px 12px
+                rgba(0,0,0,0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 20;
+
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            color: #198754;
+
+        }
+
+
+        .back-btn {
+
+            text-decoration: none;
+
+            background: #edf8f1;
+
+            color: #198754;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 900px;
+
+            margin: 30px auto 60px;
+
+        }
+
+
+        .top-section {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .top-section h1 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+        }
+
+
+        .product-count {
+
+            margin-top: 8px;
+
+            color: #666;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================
+           ADD PRODUCT BUTTON
+        ========================== */
+
+        .add-btn {
+
+            display: inline-block;
+
+            margin-top: 18px;
+
+            background: #198754;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 22px;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            transition: 0.25s;
+
+        }
+
+
+        .add-btn:hover {
+
+            background: #146c43;
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================
+           PRODUCTS GRID
+        ========================== */
+
+        #productsContainer {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(
+                        280px,
+                        1fr
+                    )
+                );
+
+            gap: 24px;
+
+        }
+
+
+        /* =========================
+           PRODUCT CARD
+        ========================== */
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 25px
+                rgba(0,0,0,0.08);
+
+            animation:
+                cardEnter
+                0.55s
+                ease-out both;
+
+        }
+
+
+        @keyframes cardEnter {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(80px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =========================
+           IMAGE
+        ========================== */
+
+        .product-image {
+
+            width: 100%;
+
+            height: 230px;
+
+            background:
+                #edf8f1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+        .emoji-placeholder {
+
+            font-size: 90px;
+
+        }
+
+
+        /* =========================
+           DETAILS
+        ========================== */
+
+        .product-details {
+
+            padding: 20px;
+
+        }
+
+
+        .category {
+
+            display: inline-block;
+
+            background: #e9f7ee;
+
+            color: #198754;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+        }
+
+
+        .product-name {
+
+            font-size: 23px;
+
+            margin:
+                12px 0 10px;
+
+        }
+
+
+        .info {
+
+            color: #666;
+
+            margin: 7px 0;
+
+            font-size: 15px;
+
+        }
+
+
+        .price {
+
+            color: #198754;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-top: 15px;
+
+        }
+
+
+        .price span {
+
+            font-size: 14px;
+
+            color: #666;
+
+        }
+
+
+        .available {
+
+            margin-top: 10px;
+
+            font-weight: bold;
+
+            color: #555;
+
+        }
+
+
+        /* =========================
+           BUYING OPTION
+        ========================== */
+
+        .option {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 9px 13px;
+
+            border-radius: 20px;
+
+            background: #e8f7ed;
+
+            color: #198754;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        .option.delivery {
+
+            background: #fff2e8;
+
+            color: #d56b18;
+
+        }
+
+
+        /* =========================
+           DELETE BUTTON
+        ========================== */
+
+        .delete-btn {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #fff0f0;
+
+            color: #c0392b;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+        }
+
+
+        .delete-btn:hover {
+
+            background: #ffe0e0;
+
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================== */
+
+        .empty {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.06);
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 70px;
+
+        }
+
+
+        .empty h2 {
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .empty p {
+
+            color: #666;
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .container {
+
+                width: 92%;
+
+                margin-top: 25px;
+
+            }
+
+
+            .top-section h1 {
+
+                font-size: 27px;
+
+            }
+
+
+            #productsContainer {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .product-image {
+
+                height: 240px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        🌱 FarmConnect
+
+    </div>
+
+
+    <a
+        href="farmer-dashboard.html"
+        class="back-btn">
+
+        ← Back
+
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="container">
+
+
+    <section class="top-section">
+
+
+        <h1>
+
+            Listed Products
+
+        </h1>
+
+
+        <div
+            class="product-count"
+            id="productCount">
+
+            0 products
+
+        </div>
+
+
+        <a
+            href="add-product.html"
+            class="add-btn">
+
+            + Add Product
+
+        </a>
+
+
+    </section>
+
+
+
+    <!-- PRODUCTS -->
+
+    <div id="productsContainer"></div>
+
+
+</main>
+
+
+
+<script>
+
+
+// ========================================
+// LOAD PRODUCTS
+// ========================================
+
+function loadProducts() {
+
+
+    let products = [];
+
+
+    try {
+
+        products =
+            JSON.parse(
+                localStorage.getItem(
+                    "farmConnectProducts"
+                )
+            ) || [];
+
+    }
+
+    catch(error) {
+
+        products = [];
+
+    }
+
+
+    if (!Array.isArray(products)) {
+
+        products = [];
+
+    }
+
+
+
+    const container =
+        document.getElementById(
+            "productsContainer"
+        );
+
+
+    const count =
+        document.getElementById(
+            "productCount"
+        );
+
+
+    count.innerText =
+        products.length +
+        (
+            products.length === 1
+                ? " product"
+                : " products"
+        );
+
+
+
+    // ====================================
+    // EMPTY
+    // ====================================
+
+    if (products.length === 0) {
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🌾
+                </div>
+
+                <h2>
+                    No Products Listed
+                </h2>
+
+                <p>
+                    Add your first farm product
+                    to start selling directly.
+                </p>
+
+                <a
+                    href="add-product.html"
+                    class="add-btn">
+
+                    + Add Product
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    // ====================================
+    // PRODUCTS
+    // ====================================
+
+    container.innerHTML = "";
+
+
+    products.forEach(
+        function(product, index) {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            card.style.animationDelay =
+                (index * 0.08) + "s";
+
+
+
+            // CATEGORY
+
+            let category =
+                product.category ||
+                "products";
+
+
+            category =
+                category
+                    .charAt(0)
+                    .toUpperCase() +
+                category.slice(1);
+
+
+
+            // OPTION
+
+            let optionHTML = "";
+
+
+            if (
+                product.option ===
+                "delivery"
+            ) {
+
+                optionHTML = `
+
+                    <div
+                        class="
+                            option
+                            delivery
+                        ">
+
+                        🚚 Delivery Available
+
+                    </div>
+
+                `;
+
+            }
+
+            else {
+
+                optionHTML = `
+
+                    <div
+                        class="option">
+
+                        🛍️ Self Buying
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            // IMAGE
+
+            let imageHTML = "";
+
+
+
+            if (
+                product.image &&
+                product.image !==
+                    "undefined" &&
+                product.image.trim() !== ""
+            ) {
+
+
+                imageHTML = `
+
+                    <img
+                        src="${product.image}"
+                        alt="${escapeHTML(product.name || "Product")}"
+                        onerror="this.parentElement.innerHTML='<div class=\\'emoji-placeholder\\'>🌾</div>'">
+
+                `;
+
+            }
+
+            else {
+
+
+                imageHTML = `
+
+                    <div
+                        class="emoji-placeholder">
+
+                        ${
+                            product.emoji ||
+                            "🌾"
+                        }
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            // =================================
+            // CARD
+            // =================================
+
+            card.innerHTML = `
+
+                <div class="product-image">
+
+                    ${imageHTML}
+
+                </div>
+
+
+                <div class="product-details">
+
+
+                    <div class="category">
+
+                        ${escapeHTML(category)}
+
+                    </div>
+
+
+                    <h2 class="product-name">
+
+                        ${escapeHTML(
+                            product.name ||
+                            "Unnamed Product"
+                        )}
+
+                    </h2>
+
+
+                    <div class="info">
+
+                        👨‍🌾
+
+                        ${escapeHTML(
+                            product.farmer ||
+                            "Local Farmer"
+                        )}
+
+                    </div>
+
+
+                    <div class="info">
+
+                        📍
+
+                        ${escapeHTML(
+                            product.location ||
+                            "Location not available"
+                        )}
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ₹${Number(
+                            product.price || 0
+                        )}
+
+                        <span>
+                            / kg
+                        </span>
+
+                    </div>
+
+
+                    <div class="available">
+
+                        Available:
+
+                        ${Number(
+                            product.quantity || 0
+                        )}
+
+                        kg
+
+                    </div>
+
+
+                    ${optionHTML}
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="
+                            deleteProduct(
+                                '${String(
+                                    product.id
+                                ).replace(
+                                    /'/g,
+                                    "\\'"
+                                )}'
+                            )
+                        ">
+
+                        🗑️ Delete
+
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+
+        }
+    );
+
+}
+
+
+
+// ========================================
+// DELETE PRODUCT
+// ========================================
+
+function deleteProduct(id) {
+
+
+    const confirmDelete =
+        confirm(
+            "Delete this product?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    let products =
+        JSON.parse(
+            localStorage.getItem(
+                "farmConnectProducts"
+            )
+        ) || [];
+
+
+    products =
+        products.filter(
+            function(product) {
+
+                return String(product.id) !==
+                       String(id);
+
+            }
+        );
+
+
+    localStorage.setItem(
+
+        "farmConnectProducts",
+
+        JSON.stringify(products)
+
+    );
+
+
+    loadProducts();
+
+}
+
+
+
+// ========================================
+// HTML SAFE TEXT
+// ========================================
+
+function escapeHTML(value) {
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+
+// ========================================
+// START
+// ========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProducts();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
