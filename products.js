@@ -309,3 +309,55 @@ function getProductsByCategory(category) {
 
     return [...demo, ...farmerProducts];
           }
+
+function getProductDistance(product) {
+
+    const customerLatitude =
+        parseFloat(
+            localStorage.getItem("customerLatitude")
+        );
+
+    const customerLongitude =
+        parseFloat(
+            localStorage.getItem("customerLongitude")
+        );
+
+
+    const farmerLatitude =
+        parseFloat(product.latitude);
+
+    const farmerLongitude =
+        parseFloat(product.longitude);
+
+
+    if (
+        isNaN(customerLatitude) ||
+        isNaN(customerLongitude) ||
+        isNaN(farmerLatitude) ||
+        isNaN(farmerLongitude)
+    ) {
+
+        return product.distance || "Distance unavailable";
+
+    }
+
+
+    const distance =
+        calculateDistance(
+            customerLatitude,
+            customerLongitude,
+            farmerLatitude,
+            farmerLongitude
+        );
+
+
+    if (distance < 1) {
+
+        return Math.round(distance * 1000) + " m away";
+
+    }
+
+
+    return distance.toFixed(1) + " km away";
+
+}
